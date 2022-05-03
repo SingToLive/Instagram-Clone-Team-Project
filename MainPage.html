@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Instagram</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="assets/favicon.svg" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<header class="header">
+    <nav class="header__content">
+        <div class="header__buttons">
+            <!-- 좌측 상단 instagram img -->
+            <a href="index.html" class="header__home">
+                <img src="assets/logo.svg">
+            </a>
+        </div>
+
+        <div class="header__search">
+            <!-- 돋보기 이미지 -->
+            <img src="assets/icons/search.svg">
+            <!-- 검색 txt 박스 -->
+            <input type="text" placeholder="Search"/>
+        </div>
+
+        <div class="header__buttons header__buttons--mobile">
+            <!-- 모바일 화면 우측 상단 게시물 작성 이미지 -->
+            <a href="#">
+                <svg aria-label="새로운 게시물" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <path d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552z"
+                          fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"></path>
+                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" x1="6.545" x2="17.455" y1="12.001" y2="12.001"></line>
+                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" x1="12.003" x2="12.003" y1="6.545" y2="17.455"></line>
+                </svg>
+            </a>
+            <!-- 모바일 화면 우측 상단 활동 피드 이미지 -->
+            <a href="#">
+                <svg aria-label="활동 피드" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path>
+                </svg>
+            </a>
+            <!-- 모바일 화면 우측 상단 메세지 이미지 -->
+            <a href="#">
+                <svg aria-label="Direct" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218"
+                          y1="3" y2="10.083"></line>
+                    <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
+                             stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                </svg>
+            </a>
+        </div>
+
+        <div class="header__buttons header__buttons--desktop">
+            <!-- 우측 상단 홈 이미지 -->
+            <a href="index.html">
+                <svg aria-label="홈" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <path d="M22 23h-6.001a1 1 0 01-1-1v-5.455a2.997 2.997 0 10-5.993 0V22a1 1 0 01-1 1H2a1 1 0 01-1-1V11.543a1.002 1.002 0 01.31-.724l10-9.543a1.001 1.001 0 011.38 0l10 9.543a1.002 1.002 0 01.31.724V22a1 1 0 01-1 1z"></path>
+                </svg>
+            </a>
+            <!-- 우측 상단 메세지 이미지 -->
+            <a href="#">
+                <svg aria-label="Direct" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218"
+                          y1="3" y2="10.083"></line>
+                    <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
+                             stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                </svg>
+            </a>
+            <!-- 우측 상단 게시물 작성 이미지 -->
+            <a href="#">
+                <svg aria-label="새로운 게시물" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <path d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552z"
+                          fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"></path>
+                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" x1="6.545" x2="17.455" y1="12.001" y2="12.001"></line>
+                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" x1="12.003" x2="12.003" y1="6.545" y2="17.455"></line>
+                </svg>
+            </a>
+            <!-- 우측 상단 사람 찾기 이미지 -->
+            <a href="#">
+                <svg aria-label="사람 찾기" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <polygon fill="none" points="13.941 13.953 7.581 16.424 10.06 10.056 16.42 7.585 13.941 13.953"
+                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                             stroke-width="2"></polygon>
+                    <polygon fill-rule="evenodd"
+                             points="10.06 10.056 13.949 13.945 7.581 16.424 10.06 10.056"></polygon>
+                    <circle cx="12.001" cy="12.005" fill="none" r="10.5" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2"></circle>
+                </svg>
+            </a>
+            <!-- 우측 상단 활동 피드 이미지 -->
+            <a href="#">
+                <svg aria-label="활동 피드" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path>
+                </svg>
+            </a>
+            <!-- 우측 상단 프로필 이미지 버튼 -->
+            <a href="MyPage.html">
+                <button class="profile-button">
+                    <div class="profile-button__border"></div>
+                    <div class="profile-button__picture">
+                        <img src="assets/woodindin.png" alt="User Picture"/>
+                    </div>
+                </button>
+            </a>
+        </div>
+    </nav>
+</header>
+
+<main class="main-container">
+    <section class="content-container">
+        <div class="content">
+            <!-- 피드를 모아두는 div -->
+            <div class="posts">
+                <!-- 개별 피드 -->
+                <article class="post">
+                    <div class="post__header">
+                        <div class="post__profile">
+                            <!-- 게시물 작성자 프사 -->
+                            <a
+                                    href="MyPage.html"
+
+                                    class="post__avatar"
+                            >
+                                <img src="assets/woodindin.png" alt="User Picture"/>
+                            </a>
+                            <!-- 게시물 작성자 아이디 -->
+                            <a
+                                    href="MyPage.html"
+                                    class="post__user"
+                            >woodindin</a
+                            >
+                        </div>
+                        <!-- 게시물 옵션 버튼 -->
+                        <button class="post__more-options">
+                            <svg aria-label="옵션 더 보기" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                 role="img" viewBox="0 0 24 24" width="24">
+                                <circle cx="12" cy="12" r="1.5"></circle>
+                                <circle cx="6" cy="12" r="1.5"></circle>
+                                <circle cx="18" cy="12" r="1.5"></circle>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="post__content">
+                        <!-- 게시물 사진 -->
+                        <div class="post__medias">
+                            <div id="myCarousel_1" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel_1" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel_1" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel_1" data-slide-to="2"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img
+                                                class="post__media"
+                                                src="assets/woodindin.png"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+
+                                    <div class="item">
+                                        <img
+                                                class="post__media"
+                                                src="assets/woodindin.png"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+
+                                    <div class="item">
+                                        <img
+                                                class="post__media"
+                                                src="assets/woodindin.png"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel_1" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel_1" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="post__footer">
+                        <div class="post__buttons">
+                            <!-- 좋아요 버튼 -->
+                            <button class="post__button">
+                                <svg aria-label="좋아요" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path>
+                                </svg>
+                            </button>
+                            <!-- 댓글 버튼 -->
+                            <button class="post__button">
+                                <svg aria-label="댓글 달기" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none"
+                                          stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                            </button>
+                            <!-- 공유 버튼 -->
+                            <button class="post__button">
+                                <svg aria-label="게시물 공유" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                          x1="22" x2="9.218" y1="3" y2="10.083"></line>
+                                    <polygon fill="none"
+                                             points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
+                                             stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                                </svg>
+                                </svg>
+                            </button>
+
+                            <div class="post__indicators"></div>
+                            <!-- 저장 버튼 -->
+                            <button class="post__button post__button--align-right">
+                                <svg aria-label="저장" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+                                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                             stroke-width="2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="post__infos">
+                            <div class="post__likes">
+                                <!-- 좋아요 누른 사람 프사 -->
+                                <a href="#" class="post__likes-avatar">
+                                    <img src="assets/default-user.png" alt="User Picture"/>
+                                </a>
+                                <!-- ㅇㅇ님 외 00명이 좋아합니다 -->
+                                <span>
+                                    <a class="post__name--underline" href="#">유저 아이디</a>
+                                    <a>님 외 00명이 좋아합니다 </a>
+                                </span>
+                            </div>
+
+                            <div class="post__description">
+                                <!-- 댓글 남긴 사람 아이디와 내용 -->
+                                <span>
+                                  <a
+                                          class="post__name--underline"
+                                          href="#"
+                                          target="_blank"
+                                  >woodindin</a
+                                  >
+                                  퍼가요~♥
+                                </span>
+                            </div>
+                            <div>
+                                <input type="text" style="width: 90%;height: 100%;">
+                                <button type="button" class="btn btn-primary btn-sm"
+                                        style="background-color: black; float: right;">Post
+                                </button>
+                            </div>
+
+
+                            <!-- 지난 시간 text -->
+                            <span class="post__date-time">30분 전</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="post">
+                    <div class="post__header">
+                        <div class="post__profile">
+                            <!-- 게시물 작성자 프사 -->
+                            <a
+                                    href="MyPage.html"
+                                    class="post__avatar"
+                            >
+                                <img src="assets/woodindin.png" alt="User Picture"/>
+                            </a>
+                            <!-- 게시물 작성자 아이디 -->
+                            <a
+                                    href="MyPage.html"
+                                    class="post__user"
+                            >woodindin</a
+                            >
+                        </div>
+                        <!-- 게시물 옵션 버튼 -->
+                        <button class="post__more-options">
+                            <svg aria-label="옵션 더 보기" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                 role="img" viewBox="0 0 24 24" width="24">
+                                <circle cx="12" cy="12" r="1.5"></circle>
+                                <circle cx="6" cy="12" r="1.5"></circle>
+                                <circle cx="18" cy="12" r="1.5"></circle>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="post__content">
+                        <!-- 게시물 사진 -->
+                        <div class="post__medias">
+                            <div id="myCarousel_2" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel_2" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel_2" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel_2" data-slide-to="2"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img
+                                                class="post__media"
+                                                src="assets/woodindin.png"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+
+                                    <div class="item">
+                                        <img
+                                                class="post__media"
+                                                src="assets/woodindin.png"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+
+                                    <div class="item">
+                                        <img
+                                                class="post__media"
+                                                src="assets/woodindin.png"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel_2" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel_2" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="post__footer">
+                        <div class="post__buttons">
+                            <!-- 좋아요 버튼 -->
+                            <button class="post__button">
+                                <svg aria-label="좋아요" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path>
+                                </svg>
+                            </button>
+                            <!-- 댓글 버튼 -->
+                            <button class="post__button">
+                                <svg aria-label="댓글 달기" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none"
+                                          stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                            </button>
+                            <!-- 공유 버튼 -->
+                            <button class="post__button">
+                                <svg aria-label="게시물 공유" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                          x1="22" x2="9.218" y1="3" y2="10.083"></line>
+                                    <polygon fill="none"
+                                             points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
+                                             stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                                </svg>
+                                </svg>
+                            </button>
+
+                            <div class="post__indicators"></div>
+                            <!-- 저장 버튼 -->
+                            <button class="post__button post__button--align-right">
+                                <svg aria-label="저장" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+                                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                             stroke-width="2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="post__infos">
+                            <div class="post__likes">
+                                <!-- 좋아요 누른 사람 프사 -->
+                                <a href="#" class="post__likes-avatar">
+                                    <img src="assets/default-user.png" alt="User Picture"/>
+                                </a>
+                                <!-- ㅇㅇ님 외 00명이 좋아합니다 -->
+                                <span>
+                                    <a class="post__name--underline" href="#">유저 아이디</a>
+                                    <a>님 외 00명이 좋아합니다 </a>
+                                </span>
+                            </div>
+
+                            <div class="post__description">
+                                <!-- 댓글 남긴 사람 아이디와 내용 -->
+                                <span>
+                                  <a
+                                          class="post__name--underline"
+                                          href="#"
+                                          target="_blank"
+                                  >woodindin</a
+                                  >
+                                  퍼가요~♥
+                                </span>
+                            </div>
+                            <div>
+                                <input type="text" style="width: 90%;height: 100%;">
+                                <button type="button" class="btn btn-primary btn-sm"
+                                        style="background-color: black; float: right;">Post
+                                </button>
+                            </div>
+                            <!-- 지난 시간 text -->
+                            <span class="post__date-time">30분 전</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="post">
+                    <div class="post__header">
+                        <div class="post__profile">
+                            <!-- 게시물 작성자 프사 -->
+                            <a
+                                    href="MyPage.html"
+                                    class="post__avatar"
+                            >
+                                <img src="assets/woodindin.png" alt="User Picture"/>
+                            </a>
+                            <!-- 게시물 작성자 아이디 -->
+                            <a
+                                    href="MyPage.html"
+                                    class="post__user"
+                            >woodindin</a
+                            >
+                        </div>
+                        <!-- 게시물 옵션 버튼 -->
+                        <button id="a" class="post__more-options">
+                            <svg aria-label="옵션 더 보기" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                 role="img" viewBox="0 0 24 24" width="24">
+                                <circle cx="12" cy="12" r="1.5"></circle>
+                                <circle cx="6" cy="12" r="1.5"></circle>
+                                <circle cx="18" cy="12" r="1.5"></circle>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="post__content">
+                        <!-- 게시물 사진 -->
+                        <div class="post__medias">
+                            <div id="myCarousel_3" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel_3" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel_3" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel_3" data-slide-to="2"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img
+                                                class="post__media"
+                                                src="assets/woodindin.png"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+
+                                    <div class="item">
+                                        <img
+                                                class="post__media"
+                                                src="assets/woodindin.png"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+
+                                    <div class="item">
+                                        <img
+                                                class="post__media"
+                                                src="assets/woodindin.png"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel_3" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel_3" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="post__footer">
+                        <div class="post__buttons">
+                            <!-- 좋아요 버튼 -->
+                            <button class="post__button">
+                                <svg aria-label="좋아요" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path>
+                                </svg>
+                            </button>
+                            <!-- 댓글 버튼 -->
+                            <button class="post__button">
+                                <svg aria-label="댓글 달기" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none"
+                                          stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                            </button>
+                            <!-- 공유 버튼 -->
+                            <button class="post__button">
+                                <svg aria-label="게시물 공유" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                          x1="22" x2="9.218" y1="3" y2="10.083"></line>
+                                    <polygon fill="none"
+                                             points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
+                                             stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                                </svg>
+                                </svg>
+                            </button>
+
+                            <div class="post__indicators"></div>
+                            <!-- 저장 버튼 -->
+                            <button class="post__button post__button--align-right">
+                                <svg aria-label="저장" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                     role="img" viewBox="0 0 24 24" width="24">
+                                    <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+                                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                             stroke-width="2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="post__infos">
+                            <div class="post__likes">
+                                <!-- 좋아요 누른 사람 프사 -->
+                                <a href="#" class="post__likes-avatar">
+                                    <img src="assets/default-user.png" alt="User Picture"/>
+                                </a>
+                                <!-- ㅇㅇ님 외 00명이 좋아합니다 -->
+                                <span>
+                                    <a class="post__name--underline" href="#">유저 아이디</a>
+                                    <a>님 외 00명이 좋아합니다 </a>
+                                </span>
+                            </div>
+
+                            <div class="post__description">
+                                <!-- 댓글 남긴 사람 아이디와 내용 -->
+                                <span>
+                                  <a
+                                          class="post__name--underline"
+                                          href="#"
+                                          target="_blank"
+                                  >woodindin</a
+                                  >
+                                  퍼가요~♥
+                                </span>
+                            </div>
+                            <div>
+                                <input type="text" style="width: 90%;height: 100%;">
+                                <button type="button" class="btn btn-primary btn-sm"
+                                        style="background-color: black; float: right;">Post
+                                </button>
+                            </div>
+                            <!-- 지난 시간 text -->
+                            <span class="post__date-time">30분 전</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <section class="side-menu">
+            <!-- 우측 내 프로필 -->
+            <div class="side-menu__user-profile">
+                <!-- 내 프로필 사진 -->
+                <a
+                        href="MyPage.html"
+
+                        class="side-menu__user-avatar"
+                >
+                    <img src="assets/woodindin.png" alt="User Picture"/>
+                </a>
+                <!-- 내 프로필 이름 및 소개 -->
+                <div class="side-menu__user-info">
+                    <a href="MyPage.html"
+                    >woodindin</a
+                    >
+                    <span>우진🐳</span>
+                </div>
+            </div>
+            <!-- 우측 계정 추천 -->
+            <div class="side-menu__suggestions-section">
+                <div class="side-menu__suggestions-header">
+                    <h2>회원님을 위한 추천</h2>
+                    <button>모두 보기</button>
+                </div>
+                <div class="side-menu__suggestions-content">
+                    <div class="side-menu__suggestion">
+                        <!-- 추천 계정 프로필 사진 -->
+                        <a href="#" class="side-menu__suggestion-avatar">
+                            <img src="assets/default-user.png" alt="User Picture"/>
+                        </a>
+                        <div class="side-menu__suggestion-info">
+                            <a href="#">user01</a>
+                            <span>ㅇㅇ님 외 ㅇ명이 팔로우합니다ㅇㅇㅇㅇㅇㅇㅇㅇ</span>
+                        </div>
+                        <button class="side-menu__suggestion-button">팔로우</button>
+                    </div>
+                    <div class="side-menu__suggestion">
+                        <!-- 추천 계정 프로필 사진 -->
+                        <a href="#" class="side-menu__suggestion-avatar">
+                            <img src="assets/default-user.png" alt="User Picture"/>
+                        </a>
+                        <div class="side-menu__suggestion-info">
+                            <a href="#">user02</a>
+                            <span>ㅇㅇ님 외 ㅇ명이 팔로우합니다ㅇㅇㅇㅇㅇㅇㅇㅇ</span>
+                        </div>
+                        <button class="side-menu__suggestion-button">팔로우</button>
+                    </div>
+                    <div class="side-menu__suggestion">
+                        <!-- 추천 계정 프로필 사진 -->
+                        <a href="#" class="side-menu__suggestion-avatar">
+                            <img src="assets/default-user.png" alt="User Picture"/>
+                        </a>
+                        <div class="side-menu__suggestion-info">
+                            <a href="#">user03</a>
+                            <span>ㅇㅇ님 외 ㅇ명이 팔로우합니다ㅇㅇㅇㅇㅇㅇㅇㅇ</span>
+                        </div>
+                        <button class="side-menu__suggestion-button">팔로우</button>
+                    </div>
+                    <div class="side-menu__suggestion">
+                        <!-- 추천 계정 프로필 사진 -->
+                        <a href="#" class="side-menu__suggestion-avatar">
+                            <img src="assets/default-user.png" alt="User Picture"/>
+                        </a>
+                        <div class="side-menu__suggestion-info">
+                            <a href="#">user04</a>
+                            <span>ㅇㅇ님 외 ㅇ명이 팔로우합니다ㅇㅇㅇㅇㅇㅇㅇㅇ</span>
+                        </div>
+                        <button class="side-menu__suggestion-button">팔로우</button>
+                    </div>
+                    <div class="side-menu__suggestion">
+                        <!-- 추천 계정 프로필 사진 -->
+                        <a href="#" class="side-menu__suggestion-avatar">
+                            <img src="assets/default-user.png" alt="User Picture"/>
+                        </a>
+                        <div class="side-menu__suggestion-info">
+                            <a href="#">user05</a>
+                            <span>ㅇㅇ님 외 ㅇ명이 팔로우합니다ㅇㅇㅇㅇㅇㅇㅇㅇ</span>
+                        </div>
+                        <button class="side-menu__suggestion-button">팔로우</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</main>
+
+<div id="my_modal">
+    <div class="modal_btn">신고</div>
+    <div class="modal_btn">팔로우 취소</div>
+    <div class="modal_btn">게시물로 이동</div>
+    <div class="modal_btn">태그된 계정</div>
+    <div class="modal_btn">공유 대상...</div>
+    <div class="modal_btn">링크 복사</div>
+    <div class="modal_btn">퍼가기</div>
+    <div id="modal_close_btn" class="modal_btn">취소</div>
+</div>
+
+
+<nav class="navbar">
+    <!-- 모바일 화면 집모양 이미지 -->
+    <a href="#" class="navbar__button">
+        <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                    d="M2.45307 11.751L11.9773 2.02175L21.5015 11.751C21.7906 12.0463 21.9545 12.4468 21.9545 12.8711V20.4556C21.9545 20.7747 21.7037 21 21.4427 21H15.964C15.713 21 15.4721 20.7849 15.4721 20.476V15.8886C15.4721 13.9497 13.9267 12.34 11.9773 12.34C10.0279 12.34 8.48244 13.9497 8.48244 15.8886V20.476C8.48244 20.7849 8.24157 21 7.99053 21H2.51187C2.25085 21 2 20.7747 2 20.4556V12.8711C2 12.4468 2.16397 12.0463 2.45307 11.751Z"
+                    stroke="var(--text-dark)"
+                    stroke-width="2"
+            />
+        </svg>
+    </a>
+    <!-- 모바일 화면 돋보기 이미지 -->
+    <a href="#" class="navbar__button">
+        <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M21.669 21.6543C21.8625 21.4622 21.863 21.1494 21.6703 20.9566L17.3049 16.5913C18.7912 14.9327 19.7017 12.7525 19.7017 10.3508C19.7017 5.18819 15.5135 1 10.3508 1C5.18819 1 1 5.18819 1 10.3508C1 15.5135 5.18819 19.7017 10.3508 19.7017C12.7624 19.7017 14.9475 18.7813 16.606 17.2852L20.9739 21.653C21.1657 21.8449 21.4765 21.8454 21.669 21.6543ZM1.9843 10.3508C1.9843 5.7394 5.7394 1.9843 10.3508 1.9843C14.9623 1.9843 18.7174 5.7394 18.7174 10.3508C18.7174 14.9623 14.9623 18.7174 10.3508 18.7174C5.7394 18.7174 1.9843 14.9623 1.9843 10.3508Z"
+                    fill="var(--text-dark)"
+                    stroke="var(--text-dark)"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+            />
+        </svg>
+    </a>
+    <!-- 모바일 화면 동영상 이미지 -->
+    <a href="#" class="navbar__button">
+        <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M18 2.8H7C5.23269 2.8 3.8 4.23269 3.8 6V17C3.8 18.7673 5.23269 20.2 7 20.2H18C19.7673 20.2 21.2 18.7673 21.2 17V6C21.2 4.23269 19.7673 2.8 18 2.8ZM7 1C4.23858 1 2 3.23858 2 6V17C2 19.7614 4.23858 22 7 22H18C20.7614 22 23 19.7614 23 17V6C23 3.23858 20.7614 1 18 1H7Z"
+                    fill="var(--text-dark)"
+            />
+            <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M22 7.99995H3V6.19995H22V7.99995Z"
+                    fill="var(--text-dark)"
+            />
+            <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M10 6.99989L6 1.99989L7.57349 1.12573L11.5735 6.12573L10 6.99989Z"
+                    fill="var(--text-dark)"
+            />
+            <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M16.5 6.99989L12.5 1.99989L14.0735 1.12573L18.0735 6.12573L16.5 6.99989Z"
+                    fill="var(--text-dark)"
+            />
+            <path
+                    d="M15.75 13.0671C16.0833 13.2595 16.0833 13.7407 15.75 13.9331L10.5 16.9642C10.1667 17.1566 9.75 16.9161 9.75 16.5312L9.75 10.469C9.75 10.0841 10.1667 9.84354 10.5 10.036L15.75 13.0671Z"
+                    fill="var(--text-dark)"
+            />
+        </svg>
+    </a>
+    <!-- 모바일 화면 쇼핑 이미지 -->
+    <a href="#" class="navbar__button">
+        <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M17.6007 7.94185H6.47927C5.84559 7.94185 5.32113 8.43455 5.2816 9.06699L4.80842 16.638C4.6573 19.0559 6.57759 21.0999 9.00024 21.0999H15.0797C17.5023 21.0999 19.4226 19.0559 19.2715 16.638L18.7983 9.06699C18.7588 8.43455 18.2343 7.94185 17.6007 7.94185ZM6.47927 6.14185C4.89508 6.14185 3.58393 7.37361 3.48511 8.95471L3.01192 16.5257C2.79604 19.9799 5.53931 22.9 9.00024 22.9H15.0797C18.5406 22.9 21.2839 19.9799 21.068 16.5257L20.5948 8.95471C20.496 7.37361 19.1849 6.14185 17.6007 6.14185H6.47927Z"
+                    fill="var(--text-dark)"
+            />
+            <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12.2761 2.8C11.0812 2.8 10.1125 3.76867 10.1125 4.96359V6.1419H8.3125V4.96359C8.3125 2.77456 10.0871 1 12.2761 1C14.4651 1 16.2397 2.77456 16.2397 4.96359V6.1419H14.4397V4.96359C14.4397 3.76867 13.471 2.8 12.2761 2.8Z"
+                    fill="var(--text-dark)"
+            />
+            <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12.2757 12.3118C13.4706 12.3118 14.4393 11.3431 14.4393 10.1482L14.4393 9.91256C14.4393 9.41551 14.8422 9.01256 15.3393 9.01256C15.8363 9.01256 16.2393 9.41551 16.2393 9.91256L16.2393 10.1482C16.2393 12.3373 14.4647 14.1118 12.2757 14.1118C10.0866 14.1118 8.31208 12.3373 8.31208 10.1482L8.31208 9.91257C8.31208 9.41551 8.71502 9.01257 9.21208 9.01257C9.70913 9.01257 10.1121 9.41551 10.1121 9.91257L10.1121 10.1482C10.1121 11.3431 11.0807 12.3118 12.2757 12.3118Z"
+                    fill="var(--text-dark)"
+            />
+        </svg>
+    </a>
+    <!-- 모바일 화면 내 프로필 버튼 -->
+    <button class="navbar__button profile-button">
+        <div class="profile-button__border"></div>
+        <div class="profile-button__picture">
+            <img src="assets/default-user.png" alt="User Picture"/>
+        </div>
+    </button>
+</nav>
+<script>
+    function modal(id) {
+        var zIndex = 9999;
+        var modal = document.getElementById(id);
+
+        // 모달 div 뒤에 희끄무레한 레이어
+        var bg = document.createElement('div');
+        bg.setStyle({
+            position: 'fixed',
+            zIndex: zIndex,
+            left: '0px',
+            top: '0px',
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            // 레이어 색갈은 여기서 바꾸면 됨
+            backgroundColor: 'rgba(0,0,0,0.4)'
+        });
+        document.body.append(bg);
+
+        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+        document.getElementById('modal_close_btn').addEventListener('click', function () {
+            bg.remove();
+            modal.style.display = 'none';
+        });
+
+        modal.setStyle({
+            position: 'fixed',
+            display: 'block',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+            // 시꺼먼 레이어 보다 한칸 위에 보이기
+            zIndex: zIndex + 1,
+
+            // div center 정렬
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            msTransform: 'translate(-50%, -50%)',
+            webkitTransform: 'translate(-50%, -50%)'
+        });
+
+
+    }
+
+    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+    Element.prototype.setStyle = function (styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+    };
+
+    modal_event = document.getElementsByClassName('post__more-options')
+    for (var i = 0; i < modal_event.length; i++) {
+        modal_event[i].addEventListener('click', function () {
+            modal('my_modal');
+        });
+    }
+
+    // 모달창 띄우기
+
+
+</script>
+</body>
+</html>
