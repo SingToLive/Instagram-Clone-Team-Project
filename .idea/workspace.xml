@@ -12,13 +12,19 @@
 =======
 =======
 >>>>>>> 8a99803ee56897fdb584e4eb17e162412d3a075a
+<<<<<<< HEAD
 >>>>>>> 81595b87bf80d505038446a9b61ea111aca18c04
+=======
+>>>>>>> e801df8ade320c6a79547fae40b40b0747d3f4d7
       <change beforePath="$PROJECT_DIR$/static/css/loginpage.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/loginpage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/signuppage.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/signuppage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/LoginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LoginPage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/SignUpPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/SignUpPage.html" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> e801df8ade320c6a79547fae40b40b0747d3f4d7
 <<<<<<< HEAD
 >>>>>>> 8a99803ee56897fdb584e4eb17e162412d3a075a
 =======
