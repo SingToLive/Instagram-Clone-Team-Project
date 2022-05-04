@@ -475,6 +475,7 @@ img {
     overflow-x: auto;
 
     width: 100%;
+    height: 100%;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
@@ -969,10 +970,22 @@ img {
     }
 }
 
-#my_modal {
+#option_modal {
     display: none;
     width: 260px;
     height: 366px;
+    z-index: 1000;
+
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
+#post_modal {
+    display: none;
+    width: 1200px;
+    height: 900px;
+
 
     background-color: #fefefe;
     border: 1px solid #888;
