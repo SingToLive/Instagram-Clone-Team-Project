@@ -17,7 +17,6 @@ html, body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-
 }
 
 /*로그인창*/
@@ -72,9 +71,19 @@ html, body {
     margin-top: 35px;
 }
 
+input[type=password] {
+    font-family: "굴림";
+}
+
 .float-left-password {
     padding-right: 150px;
     font-size: 16px;
+}
+.show {
+    position:absolute;
+    top: 380px;
+    left: 350px;
+    z-index: 1;
 }
 
 /*버튼*/

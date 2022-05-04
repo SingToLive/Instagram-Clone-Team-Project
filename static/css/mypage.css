@@ -55,6 +55,8 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    justify-content: start;
+    align-items: center;
 }
 
 svg {
@@ -216,36 +218,6 @@ img {
     border-width: 2px;
 }
 
-/* Main Content */
-
-
-.main-container {
-    background-color: var(--primary);
-
-    margin-top: var(--header-height);
-    margin-bottom: var(--nav-height);
-
-    display: flex;
-    flex: 1;
-}
-
-
-
-
-
-
-/*게시글*/
-footer {
-    width: 100%;
-    height: 700px;
-    float: left;
-    padding-left: 200px;
-    padding-right: 200px;
-    margin: auto;
-    display: inline;
-    display: inline-block;
-}
-
 /*마이페이지이미지*/
 .mypage-img {
     position: absolute;
@@ -341,85 +313,6 @@ footer {
 .myname {
     font-size: 15px;
     font-weight: bold;
-}
-
-/*중간선*/
-.line {
-    width: 850px;
-    margin: auto;
-}
-
-
-
-.custom-btn {
-    width: 130px;
-    height: 40px;
-    padding: 10px 25px;
-    border: 1px solid #F5F5F5;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-}
-
-.btn-1 {
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.btn-1:hover {
-    box-shadow: -7px -7px 20px 0px #fff9,
-    -4px -4px 5px 0px #fff9,
-    7px 7px 20px 0px #0002,
-    4px 4px 5px 0px #0001;
-}
-
-/*게시글사진들*/
-.grid-image {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin: 30px 0;
-    padding-left: 90px;
-    padding-right: 90px;
-    overflow: hidden;
-}
-
-.grid-image > img:hover {
-    /*transform: scale(1.5);*/
-    transition: transform 1s;
-    filter: brightness(70%);
-}
-
-.grid-image img {
-    width: calc(33.333% - 10px);
-    margin: 0 15px 15px 0;
-    cursor: pointer;
-
-}
-
-.grid-image img:nth-of-type(3n),
-.grid-image img:last-child {
-    margin-right: 0;
-}
-
-@media screen and (max-width: 640px) {
-    .grid-image img {
-        width: calc(50% - 15px);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .grid-image img:nth-of-type(2n) {
-        margin-right: 0;
-    }
-
-    .grid-image img:nth-of-type(3n) {
-        margin-right: 15px;
-    }
 }
 
 /* Profile Button */
@@ -550,3 +443,199 @@ footer {
     }
 }
 
+/* Main Content */
+
+
+.main-container {
+    background-color: var(--primary);
+
+    margin-top: var(--header-height);
+    margin-bottom: var(--nav-height);
+
+    display: flex;
+    flex-direction: column;
+    width: 97%;
+    height: 100%;
+    min-height: 120vh;
+    max-width: 940px;
+}
+
+.main-container__profile {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+    height:30%;
+    border-bottom: 1px solid rgb(0,0,0,0.1);
+    min-height: 222px;
+}
+
+.main-container__profile > img {
+    width: 150px;
+    height: 150px;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    border-radius: 50%;
+    margin-left: 6%;
+    margin-right: 6%;
+}
+
+.main-container__profile__info {
+    display:flex;
+    flex-direction: column;
+    width:60%;
+    justify-content: start;
+    align-items: flex-start;
+    height: 90%;
+    min-height: 150px;
+}
+
+.main-container__profile__info__id-buttton {
+    font-size: 27px;
+    font-weight: 100;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.main-container__profile__info__id-buttton > button {
+    margin-left: 4%;
+    margin-right: 3.5%;
+    background-color: rgb(250, 250, 250);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 2px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.main-container__profile__info__id-buttton > i {
+    font-size: 23px;
+}
+
+.main-container__profile__info__follow-etc {
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    justify-content: start;
+    align-items: center;
+    margin: 20px 0px 20px 0px;
+    font-size: 15px;
+}
+
+.main-container__profile__info__follow-etc :nth-child(3) {
+    margin-left:5%;
+}
+
+.main-container__profile__info__follow-etc :nth-child(4) {
+    margin-right:5%;
+}
+
+.main-container__profile__info__follow-etc :nth-child(odd) {
+    margin-right:1%;
+}
+
+.main-container__profile__info__follow-etc :nth-child(even) {
+    font-weight: 700;
+}
+
+.main-container__profile__info__name-discription {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+.main-container__profile__info__name-discription :first-child {
+    font-weight: 700;
+}
+
+.main-container__publications {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-width:200px;
+}
+
+.main-container__publications__icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 12px;
+    color: rgb(0, 0, 0, 0.4);
+    height: 100%;
+}
+
+.main-container__publications__icons > div {
+    margin-left: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:60px;
+    padding:20px 0px 20px 0px;
+}
+
+.main-container__publications__icons__publication {
+    color:black;
+    border-top: 1px solid black;
+}
+
+.main-container__publications__imgs {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 30% 30% 30%;
+	grid-template-rows: repeat(auto-fill, 1fr);
+    gap: 2% 3%;
+}
+
+.main-container__publications__imgs :last-child {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+#this_is_blank_for_last_row {
+    height: 100px;
+}
+
+.main-container__footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: rgb(0,0,0,0.5);
+}
+
+.main-container__footer__etc {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.main-container__footer__etc > span {
+    margin-right: 1.5%;
+}
+
+.main-container__footer__lang-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container__footer__lang-footer > span {
+    margin-right: 1.5%;
+}
+
+.main-container__footer__lang-footer i {
+    font-size: 12px;
+}
