@@ -420,6 +420,15 @@ img {
     padding: 16px;
 }
 
+.post__main {
+    background-color: var(--primary);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+}
+
 .post__profile {
     display: flex;
     align-items: center;
