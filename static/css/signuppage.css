@@ -83,6 +83,13 @@ input[type=password] {
     font-family: "굴림";
 }
 
+.show {
+    position: absolute;
+    top: 415px;
+    left: 350px;
+    z-index: 1;
+}
+
 /*버튼*/
 @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700);
 
