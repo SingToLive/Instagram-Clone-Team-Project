@@ -17,7 +17,6 @@ html, body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-
 }
 
 /*가입창*/
@@ -78,6 +77,10 @@ html, body {
 .password {
     padding-right: 260px;
     font-size: 16px;
+}
+
+input[type=password] {
+    font-family: "굴림";
 }
 
 /*버튼*/
