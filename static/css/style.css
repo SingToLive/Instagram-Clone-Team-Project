@@ -1011,3 +1011,17 @@ img {
     padding: 15px;
 }
 
+#feed_modal {
+    display: none;
+    width: 260px;
+    height: 366px;
+
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+.feed-option {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

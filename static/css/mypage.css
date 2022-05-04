@@ -639,3 +639,53 @@ img {
 .main-container__footer__lang-footer i {
     font-size: 12px;
 }
+
+#feed_modal {
+    display: none;
+    width: 260px;
+    height: 366px;
+
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+.feed-option {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.post__profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.post__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+.post__avatar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    border: 1px solid var(--img-border);
+    border-radius: 50%;
+}
+
+.modal_btn {
+    width: 260px;
+    height: 45.75px;
+    border-top: 1px solid #dbdbdb;
+    font-size: 14px;
+    margin: 0;
+    text-align: center;
+    padding: 15px;
+}
