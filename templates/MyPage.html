@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,61 +21,159 @@
 
 </head>
 <body>
-<!-- navigation -->
-<nav>
-    <div class="nav-container">
-        <div class="nav-1">
-            <img class="logo_img" src="/static/camera.png" alt="카메라">
-            <a href="#"><img class="logo_instagram_txt" src="/static/logo.png" alt="logo_text"></a>
-        </div>
-        <input id="searchInput" type="search" class="input-search" placeholder="검색">
-        <div class="nav-2">
-            <img src="/static/home.png" alt="홈">
-            <img src="/static/num.png" alt="DM">
-            <img src="/static/add.png" alt="추가">
-            <img src="/static/explore.png" alt="탐색">
-            <img src="/static/heart.png" alt="하트">
-            <img class="pic"
-                 src="/static/mypage.png"
-                 alt="마이페이지">
-        </div>
-    </div>
-</nav>
-
-<section>
-    <!--빈값-->
-</section>
-<!--마이페이지 이미지-->
-<aside>
-    <div id="mypage-body">
-        <div class="mypage-img">
-            <a href="http://localhost:63342/instagram_clone/templates/main.html?_ijt=21qd2kngilcl2280r3ls2uenmn&_ij_reload=RELOAD_ON_SAVE">
-                <img src="/static/mypage-logo.png" alt="마이페이지"></a>
+<header class="header">
+    <!-- navigation -->
+    <nav class="header__content">
+        <div class="header__buttons">
+            <!-- 좌측 상단 instagram img -->
+            <a href="MainPage.html" class="header__home">
+                <img src="../static/img/logo.svg">
+            </a>
         </div>
 
-    </div>
-</aside>
+        <div class="header__search">
+            <!-- 돋보기 이미지 -->
+            <img src="../static/img/icons/search.svg">
+            <!-- 검색 txt 박스 -->
+            <input type="text" placeholder="Search"/>
+        </div>
+
+        <div class="header__buttons header__buttons--mobile">
+            <!-- 모바일 화면 우측 상단 게시물 작성 이미지 -->
+            <a href="#">
+                <svg aria-label="새로운 게시물" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <path d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552z"
+                          fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"></path>
+                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" x1="6.545" x2="17.455" y1="12.001" y2="12.001"></line>
+                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" x1="12.003" x2="12.003" y1="6.545" y2="17.455"></line>
+                </svg>
+            </a>
+            <!-- 모바일 화면 우측 상단 활동 피드 이미지 -->
+            <a href="#">
+                <svg aria-label="활동 피드" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path>
+                </svg>
+            </a>
+            <!-- 모바일 화면 우측 상단 메세지 이미지 -->
+            <a href="#">
+                <svg aria-label="Direct" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218"
+                          y1="3" y2="10.083"></line>
+                    <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
+                             stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                </svg>
+            </a>
+        </div>
+
+        <div class="header__buttons header__buttons--desktop">
+            <!-- 우측 상단 홈 이미지 -->
+            <a href="MainPage.html">
+                <svg aria-label="홈" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <path d="M22 23h-6.001a1 1 0 01-1-1v-5.455a2.997 2.997 0 10-5.993 0V22a1 1 0 01-1 1H2a1 1 0 01-1-1V11.543a1.002 1.002 0 01.31-.724l10-9.543a1.001 1.001 0 011.38 0l10 9.543a1.002 1.002 0 01.31.724V22a1 1 0 01-1 1z"></path>
+                </svg>
+            </a>
+            <!-- 우측 상단 메세지 이미지 -->
+            <a href="#">
+                <svg aria-label="Direct" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218"
+                          y1="3" y2="10.083"></line>
+                    <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
+                             stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                </svg>
+            </a>
+            <!-- 우측 상단 게시물 작성 이미지 -->
+            <a href="#">
+                <svg aria-label="새로운 게시물" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <path d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552z"
+                          fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"></path>
+                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" x1="6.545" x2="17.455" y1="12.001" y2="12.001"></line>
+                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" x1="12.003" x2="12.003" y1="6.545" y2="17.455"></line>
+                </svg>
+            </a>
+            <!-- 우측 상단 사람 찾기 이미지 -->
+            <a href="#">
+                <svg aria-label="사람 찾기" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <polygon fill="none" points="13.941 13.953 7.581 16.424 10.06 10.056 16.42 7.585 13.941 13.953"
+                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                             stroke-width="2"></polygon>
+                    <polygon fill-rule="evenodd"
+                             points="10.06 10.056 13.949 13.945 7.581 16.424 10.06 10.056"></polygon>
+                    <circle cx="12.001" cy="12.005" fill="none" r="10.5" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2"></circle>
+                </svg>
+            </a>
+            <!-- 우측 상단 활동 피드 이미지 -->
+            <a href="#">
+                <svg aria-label="활동 피드" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                     viewBox="0 0 24 24" width="24">
+                    <path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path>
+                </svg>
+            </a>
+            <!-- 우측 상단 프로필 이미지 버튼 -->
+            <a href="MyPage.html">
+                <button class="profile-button">
+                    <div class="profile-button__border"></div>
+                    <div class="profile-button__picture">
+                        <img src="../static/img/sijosijo.png" alt="User Picture"/>
+                    </div>
+                </button>
+            </a>
+        </div>
+    </nav>
+</header>
+
 
 <!--프로필-->
-<main>
-    <div class="names-1">
-        <div class="name-1">nado mabeobsa</div>
+<div class="main-container">
+    <div style="width: 50%">
+        <a href="MyPage.html">
+            <button class="profile-button">
+                <div class="profile-button__border"></div>
+                <div class="profile-button1__picture">
+                    <img src="../static/img/sijosijo.png" alt="User Picture"/>
+                </div>
+            </button>
+        </a>
+    </div>
+    <div class="profile">
+    <div class="names">
+        <div class="name-1">woodindin</div>
         <div class="name-2">프로필 편집</div>
         <div class="name-3">
-            <img src="/static/setting.png" alt="세팅">
+            <svg aria-label="옵션" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
+                 viewBox="0 0 24 24" width="24">
+                <circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2"></circle>
+                <path d="M14.232 3.656a1.269 1.269 0 01-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 01-.796.66m-.001 16.688a1.269 1.269 0 01.796.66l.505.996h1.862l.505-.996a1.269 1.269 0 01.796-.66M3.656 9.768a1.269 1.269 0 01-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 01.66.796m16.688-.001a1.269 1.269 0 01.66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 01-.66-.796M7.678 4.522a1.269 1.269 0 01-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 01-.096 1.03m11.8 11.799a1.269 1.269 0 011.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 01.096-1.03m-14.956.001a1.269 1.269 0 01.096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 011.03.096m11.799-11.8a1.269 1.269 0 01-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 01-1.03-.096"
+                      fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
         </div>
     </div>
     <div class="tags">
         <div class="tag-1">게시물 <span style="font-weight: bold">9</span></div>
         <div class="tag-2">팔로워 <span style="font-weight: bold">300</span></div>
-        <div class="tag-3">팔로우 <span style="font-weight: bold">1992</span></div>
+        <div class="tag-3">팔로우 <span style="font-weight: bold">192</span></div>
     </div>
     <div class="name">
         <div class="myname">
-            YUNJI LEE
+            우진
         </div>
     </div>
-</main>
+    </div>
+</div>
 
 <!--게시글-->
 <footer>
@@ -83,15 +181,41 @@
         <hr>
     </div>
     <!--    버튼-->
-    <div class="frame">
-        <button class="custom-btn btn-1"><img src="/static/gride.png"
-                                              style="width: 20px; height: 20px;margin-right: 10px; margin-bottom: 10px">게시글
+    <div class="frame" style="text-align: center;line-height: 40px ;">
+        <button class="custom-btn btn-1" style="text-align: center;">
+            <svg aria-label="게시물" class="_8-yf5 " color="#0095f6" fill="#0095f6" height="24" role="img"
+                 viewBox="0 0 24 24" width="24">
+                <rect fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2" width="18" x="3" y="3"></rect>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      x1="9.015" x2="9.015" y1="3" y2="21"></line>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      x1="14.985" x2="14.985" y1="3" y2="21"></line>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      x1="21" x2="3" y1="9.015" y2="9.015"></line>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      x1="21" x2="3" y1="14.985" y2="14.985"></line>
+            </svg>
         </button>
-        <button class="custom-btn btn-1"><img src="/static/bookmark.png"
-                                              style="width: 20px; height: 20px;margin-right: 10px; margin-bottom: 10px">저장됨
+        <button class="custom-btn btn-1">
+            <svg aria-label="저장됨" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="24" role="img"
+                 viewBox="0 0 24 24" width="24">
+                <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor"
+                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon>
+            </svg>
         </button>
-        <button class="custom-btn btn-1"><img src="/static/profile.png"
-                                              style="width: 20px; height: 20px;margin-right: 10px; margin-bottom: 10px">태그됨
+        <button class="custom-btn btn-1">
+            <svg aria-label="태그됨" class="_8-yf5 " color="#8e8e8e" fill="#8e8e8e" height="24" role="img"
+                 viewBox="0 0 24 24" width="24">
+                <path d="M10.201 3.797L12 1.997l1.799 1.8a1.59 1.59 0 001.124.465h5.259A1.818 1.818 0 0122 6.08v14.104a1.818 1.818 0 01-1.818 1.818H3.818A1.818 1.818 0 012 20.184V6.08a1.818 1.818 0 011.818-1.818h5.26a1.59 1.59 0 001.123-.465z"
+                      fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2"></path>
+                <path d="M18.598 22.002V21.4a3.949 3.949 0 00-3.948-3.949H9.495A3.949 3.949 0 005.546 21.4v.603"
+                      fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2"></path>
+                <circle cx="12.072" cy="11.075" fill="none" r="3.556" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2"></circle>
+            </svg>
         </button>
     </div>
     <!--    게시글 이미지-->
