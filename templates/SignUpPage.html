@@ -11,7 +11,33 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <link rel="stylesheet" href="../static/css/signuppage.css"/>
     <title>Instagram</title>
+    <script>
 
+        $(document).ready(function () {
+        });
+
+        function signup() {
+            let email = $('#user_email').val()
+            let name = $('#user_name').val()
+            let id = $('#user_id').val()
+            let pw = $('#user_pw').val()
+
+            $.ajax({
+                type: "POST",
+                url: "/api/signup",
+                data: {email_give: email, name_give: name, id_give: id, pw_give: pw},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        alert('회원가입이 완료되었습니다.')
+                        window.location.href = '/login'
+                    } else {
+                        alert(response['msg'])
+                    }
+                }
+            })
+        }
+
+    </script>
 </head>
 <body>
 
@@ -28,25 +54,25 @@
     <!--이메일-->
     <div class="email_form">
         <label for="#" class="email">Email address</label>
-        <input type="email" class="form-control" id="InputEmail">
+        <input type="email" class="form-control" id="user_email">
     </div>
 
     <!--성명-->
     <div class="fullname_form">
         <label for="#" class="username">Full name</label>
-        <input type="email" class="form-control" id="InputFullname">
+        <input type="email" class="form-control" id="user_name">
     </div>
 
     <!--    사용자이름-->
     <div class="username_form">
         <label for="#" class="username">User name</label>
-        <input type="email" class="form-control" id="InputUsername">
+        <input type="email" class="form-control" id="user_id">
     </div>
 
     <!--    패스워드-->
     <div class="password_form">
         <label for="#" class="password">Password</label>
-        <input type="password" name="password" class="form-control" id="password">
+        <input type="password" name="password" class="form-control" id="user_pw">
         <div class="show">
             <i class="bi bi-eye-slash" id="togglePassword"></i>
         </div>
@@ -54,11 +80,12 @@
         <!--가입버튼-->
         <div class="login_button">
             <div class="container">
-                <a href="#" type="submit" class="button btnPush signin-btn"> Sign up </a>
+                <a onclick="signup()" type="submit" class="button btnPush signin-btn"> Sign up </a>
                 <div class="clear"></div>
             </div>
         </div>
     </div>
+
     <!--password 보이기 숨기기-->
     <script>
         const togglePassword = document.querySelector("#togglePassword");
@@ -73,6 +100,6 @@
             this.classList.toggle("bi-eye");
         });
     </script>
-
+</div>
 </body>
 </html>

@@ -12,69 +12,72 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <link rel="stylesheet" href="../static/css/loginpage.css"/>
     <title>Instagram</title>
+    <script>
 
+
+    </script>
 </head>
 <body>
 
-    <div class="login">
+<div class="login">
 
-        <!--타이틀-->
-        <div class="title">
-            <div class="logo">
-                <img src="../static/img/logo.svg" alt="로고">
-            </div>
-            <h2 class="signin">Sign in
-                <span class="or">or</span>
-                <span class="signup">Sign up</span>
-            </h2>
+    <!--타이틀-->
+    <div class="title">
+        <div class="logo">
+            <img src="../static/img/logo.svg" alt="로고">
         </div>
+        <h2 class="signin">Sign in
+            <span class="or">or</span>
+            <span class="signup">Sign up</span>
+        </h2>
+    </div>
 
-        <!--이메일-->
-        <div class="email_form">
-            <label for="#" class="email">Email address</label>
-            <input type="email" class="form-control" id="InputEmail">
-        </div>
+    <!--이메일-->
+    <div class="email_form">
+        <label for="#" class="email">Email address</label>
+        <input type="email" class="form-control" id="user_email">
+    </div>
 
-        <!--패스워드-->
-        <div class="password_form">
-            <label for="#" class="float-left-password">Password</label>
-            <small class="float-right-forgotpassword"> <a href="#">Forgot
-                Password?</a></small>
-            <input type="password" name="password" class="form-control" id="password">
-            <div class="show">
-                <i class="bi bi-eye-slash" id="togglePassword"></i>
-            </div>
-
-        </div>
-
-        <!--로그인-->
-        <div class="login_button">
-            <div class="container">
-                <a href="MainPage.html" type="submit" class="button btnPush signin-btn"> Sign in </a>
-                <div class="join">
-                    <small class="d-block text-center mt-5 signUpForFree">Don't have an account?
-                        <a href="SignUpPage.html" style="padding-left: 50px; padding-right: 30px">Sign up for Instagram</a></small>
-                </div>
-                <div class="clear"></div>
-            </div>
+    <!--패스워드-->
+    <div class="password_form">
+        <label for="#" class="float-left-password">Password</label>
+        <small class="float-right-forgotpassword"> <a href="#">Forgot
+            Password?</a></small>
+        <input type="password" name="password" class="form-control" id="user_pw">
+        <div class="show">
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
         </div>
 
     </div>
 
+    <!--로그인-->
+    <div class="login_button">
+        <div class="container">
+            <a href="#" type="submit" class="button btnPush signin-btn"> Sign in </a>
+            <div class="join">
+                <small class="d-block text-center mt-5 signUpForFree">Don't have an account?
+                    <a class="move_page">Sign up for Instagram</a></small>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+</div>
+
 <!--password 보이기 숨기기-->
-   <script>
-        const togglePassword = document.querySelector("#togglePassword");
-        const password = document.querySelector("#password");
+<script>
+    const togglePassword = document.querySelector("#togglePassword");
+    const password = document.querySelector("#password");
 
-        togglePassword.addEventListener("click", function () {
-            // toggle the type attribute
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
+    togglePassword.addEventListener("click", function () {
+        // toggle the type attribute
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
 
-            // toggle the icon
-            this.classList.toggle("bi-eye");
-        });
-    </script>
+        // toggle the icon
+        this.classList.toggle("bi-eye");
+    });
+</script>
 
 </body>
 </html>
