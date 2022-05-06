@@ -3,8 +3,8 @@ import hashlib
 import datetime
 import jwt
 from pymongo import MongoClient
-client = MongoClient('localhost',27017)
-db = client.sijosijo
+client = MongoClient('mongodb+srv://test:sparta@cluster0.qttfj.mongodb.net/Cluster0?retryWrites=true&w=majority')
+db = client.dbsparta
 
 SECRET_KEY = 'SPARTA'
 
