@@ -1,9 +1,6 @@
-
 from flask import Flask, render_template, request, jsonify, session
-
 import hashlib
 from pymongo import MongoClient
-
 import certifi
 
 client = MongoClient('mongodb+srv://test:sparta@cluster0.qttfj.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=certifi.where())
@@ -50,13 +47,10 @@ def SignUpReceive():
     }
 
     id = db.users.find_one({"user_id": id_receive})
-    print('bbb')
     if id == None:
         pass
     else:
-        print('aaa')
         return jsonify({'result': 'fail', 'msg': '중복된 아이디입니다!'})
-    print('ccc')
     if not (email_receive and name_receive and id_receive and pw_receive):
         return jsonify({'result': 'fail', 'msg': '모두 입력해주세요!'})
 
