@@ -23,7 +23,18 @@ def login():
 def main():
     return render_template('MainPage.html')
 
-#메인페이지
+#마이페이지
+@app.route('/MyPage')
+def MyPage():
+    return render_template('MyPage.html')
+
+#페이지이동
+@app.route('/page')
+def page():
+    name = request.args.get('name')
+    return render_template(name+'.html')
+
+#회원가입페이지
 @app.route('/SignUpPage')
 def SignUp():
     return render_template('SignUpPage.html')
@@ -76,10 +87,10 @@ def login_page():
                 return jsonify({'result': "success", 'msg': '로그인 되었습니다!'})
 
 
-# @app.route('/logout/')
-# def logout():
-#     session.clear()
-#     return redirect(url_for('main.index'))
+@app.route('/logout', methods=["GET"])
+def logout():
+    session.pop('user_id')
+    return jsonify({'msg': '로그아웃 되었습니다!'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

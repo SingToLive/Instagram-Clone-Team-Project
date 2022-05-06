@@ -46,7 +46,7 @@
     <nav class="header__content">
         <div class="header__buttons">
             <!-- 좌측 상단 instagram img -->
-            <a href="MainPage.html" class="header__home">
+            <a href="page?MainPage" class="header__home">
                 <img src="../static/img/logo.svg"/>
             </a>
         </div>
@@ -155,7 +155,7 @@
 
         <div class="header__buttons header__buttons--desktop">
             <!-- 우측 상단 홈 이미지 -->
-            <a href="MainPage.html">
+            <a href="page?name=MainPage">
                 <svg
                         aria-label="홈"
                         class="_8-yf5"
@@ -290,7 +290,7 @@
                 </svg>
             </button>
             <!-- 우측 상단 프로필 이미지 버튼 -->
-            <a href="MyPage.html">
+            <a href="page?name=MyPage">
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
                     <div class="profile-button__picture">
@@ -298,7 +298,7 @@
                     </div>
                 </button>
             </a>
-            <button type="button" id="logout" class="logout" style="width: 70px;
+            <button onclick="logoutbtn()" type="button" id="logout" class="logout" style="width: 70px;
                     border: solid 2px grey;
                     border-radius: 12px;
                     background-color:transparent;">로그아웃</button>
@@ -391,7 +391,7 @@
     <div class="feed_message">
         <div class="user__profile">
             <a
-                    href="MyPage.html"
+                    href="page?name=MyPage"
                     class="post__avatar"
             >
                 <img src="../static/img/sijosijo.png" alt="User Picture"/>
@@ -402,7 +402,7 @@
     <div class="feed_message">
         <div class="user__profile">
             <a
-                    href="MyPage.html"
+                    href="page?name=MyPage"
                     class="post__avatar"
             >
                 <img src="../static/img/sijosijo.png" alt="User Picture"/>
@@ -542,5 +542,6 @@
 
 
 </script>
+<script src="../static/js/logout.js"></script>
 </body>
 </html>
