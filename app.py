@@ -4,7 +4,7 @@ from pymongo import MongoClient
 import certifi
 
 client = MongoClient('mongodb+srv://test:sparta@cluster0.qttfj.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=certifi.where())
-db = client.dbsparta
+db = client.InstarClone
 
 app = Flask(__name__)
 app.secret_key = "SPARTA"
