@@ -1,22 +1,43 @@
-from flask import Flask, render_template, request, jsonify, session
-import hashlib
 from pymongo import MongoClient
+import jwt
+import datetime
+import hashlib
+from flask import Flask, render_template, jsonify, request, redirect, url_for
+from werkzeug.utils import secure_filename
+from datetime import datetime, timedelta
 import certifi
 
 client = MongoClient('mongodb+srv://test:sparta@cluster0.qttfj.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=certifi.where())
 db = client.InstarClone
 
 app = Flask(__name__)
-app.secret_key = "SPARTA"
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
+# app.secret_key = "SPARTA"
+SECRET_KEY = 'SAJOSAJO'
 
 # 로그인메인
 @app.route('/')
-def login():
-    # session.pop('user_id')
-    if "user_id" in session:
+def home():
+    token_receive = request.cookies.get('mytoken')
+    print(token_receive)
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         return render_template('MainPage.html')
-    else:
-        return render_template("LoginPage.html")
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+    # session.pop('user_id')
+    # if "user_id" in session:
+    #     return render_template('MainPage.html')
+    # else:
+    #     return render_template("LoginPage.html")
+
+@app.route('/login')
+def login():
+    msg = request.args.get("msg")
+    return render_template('LoginPage.html', msg=msg)
 
 #메인페이지
 @app.route('/MainPage')
@@ -70,7 +91,8 @@ def SignUpReceive():
         return jsonify({'result': 'success', 'msg': '회원가입 되었습니다!'})
 
 
-@app.route("/login", methods=["GET", "POST"])
+# @app.route("/login", methods=["GET", "POST"])
+@app.route("/signin", methods=["POST"])
 def login_page():
     if request.method == "POST":
         user_id = request.form["user_id"]
@@ -83,14 +105,19 @@ def login_page():
             if id["user_pw"] != user_password:
                 return jsonify({'result': "fail", 'msg': '잘못된 비밀번호입니다!'})
             else:
-                session['user_id'] = request.form['user_id']
-                return jsonify({'result': "success", 'msg': '로그인 되었습니다!'})
+                # session['user_id'] = request.form['user_id']
+                payload = {
+                    'id': user_id,
+                    'exp': datetime.utcnow() + timedelta(seconds=60 * 10)  # 로그인 10분 유지
+                }
+                token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+                return jsonify({'result': "success",'token': token, 'msg': '로그인 되었습니다!'})
 
 
-@app.route('/logout', methods=["GET"])
-def logout():
-    session.pop('user_id')
-    return jsonify({'msg': '로그아웃 되었습니다!'})
+# @app.route('/logout', methods=["GET"])
+# def logout():
+#     # session.pop('user_id')
+#     return jsonify({'msg': '로그아웃 되었습니다!'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
