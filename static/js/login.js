@@ -22,5 +22,5 @@ function loginbtn() {
 }
 
 function joinbtn() {
-    window.location.href = "/SignInPage"
+    window.location.href = "/SignUpPage"
 }

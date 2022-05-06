@@ -19,7 +19,6 @@ def login():
     if "user_id" in session:
         return render_template('MainPage.html')
     else:
-        print('kk')
         return render_template("LoginPage.html")
 
 #메인페이지
@@ -28,13 +27,13 @@ def main():
     return render_template('MainPage.html')
 
 #메인페이지
-@app.route('/SignInPage')
-def SignIn():
-    return render_template('SignInPage.html')
+@app.route('/SignUpPage')
+def SignUp():
+    return render_template('SignUpPage.html')
 
 # 회원가입API
 @app.route('/api/signup', methods=['POST'])
-def SignUp():
+def SignUpReceive():
 
     email_receive = request.form['email_give']
     name_receive = request.form['name_give']
@@ -42,7 +41,7 @@ def SignUp():
     pw_receive = request.form['pw_give']
 
     pw_receive = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
-
+    
     doc = {
         'user_email': email_receive,
         'user_name': name_receive,
@@ -50,6 +49,14 @@ def SignUp():
         'user_pw': pw_receive
     }
 
+    id = db.users.find_one({"user_id": id_receive})
+    print('bbb')
+    if id == None:
+        pass
+    else:
+        print('aaa')
+        return jsonify({'result': 'fail', 'msg': '중복된 아이디입니다!'})
+    print('ccc')
     if not (email_receive and name_receive and id_receive and pw_receive):
         return jsonify({'result': 'fail', 'msg': '모두 입력해주세요!'})
 
