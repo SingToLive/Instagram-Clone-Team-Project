@@ -24,7 +24,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "/api/signup",
+                url: "/api/SignUp",
                 data: {email_give: email, name_give: name, id_give: id, pw_give: pw},
                 success: function (response) {
                     if (response['result'] == 'success') {
