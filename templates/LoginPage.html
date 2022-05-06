@@ -53,10 +53,10 @@
     <!--로그인-->
     <div class="login_button">
         <div class="container">
-            <a href="#" type="submit" class="button btnPush signin-btn"> Sign in </a>
+            <a href="#" type="submit" class="button btnPush signin-btn" onclick="loginbtn()"> Sign in </a>
             <div class="join">
                 <small class="d-block text-center mt-5 signUpForFree">Don't have an account?
-                    <a class="move_page">Sign up for Instagram</a></small>
+                    <a class="move_page" onclick="joinbtn()">Sign up for Instagram</a></small>
             </div>
             <div class="clear"></div>
         </div>
@@ -78,6 +78,7 @@
         this.classList.toggle("bi-eye");
     });
 </script>
+<script src="../static/js/login.js"></script>
 
 </body>
 </html>
