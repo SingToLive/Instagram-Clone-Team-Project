@@ -1001,6 +1001,17 @@ img {
     border-radius: 3px;
 }
 
+#post_up_modal {
+    display: none;
+    width: 200px;
+    height: 200px;
+
+
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
 .modal_btn {
     width: 260px;
     height: 45.75px;
