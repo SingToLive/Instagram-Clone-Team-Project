@@ -13,7 +13,7 @@ db = client.InstarClone
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
-# app.secret_key = "SPARTA"
+app.secret_key = "SPARTA"
 SECRET_KEY = 'SAJOSAJO'
 
 # 로그인메인
@@ -98,7 +98,7 @@ def login_page():
         user_id = request.form["user_id"]
         user_password = request.form["user_password"]
         user_password = hashlib.sha256(user_password.encode('utf-8')).hexdigest()
-        id = db.users.find_one({"user_id": user_id})
+        id = db.users.find_one({"user_email": user_id})
         if id == None:
             return jsonify({'result': "fail", 'msg': '가입되지 않은 아이디입니다!'})
         else:

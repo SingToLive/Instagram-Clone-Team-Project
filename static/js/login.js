@@ -4,6 +4,7 @@ function loginbtn() {
     const input_pw = document.getElementById('user_pw').value;
     console.log(JSON.stringify(input_pw))
 
+
     $.ajax({
         type: "POST",
         url: "/signin",
