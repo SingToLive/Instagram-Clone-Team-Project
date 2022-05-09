@@ -1010,13 +1010,19 @@ img {
     display: none;
     width: 200px;
     height: 200px;
-
-
     background-color: #fefefe;
     border: 1px solid #888;
     border-radius: 3px;
 }
+.post-url {
+    margin: 0 0 5px 5px;
+    width: 185px;
+}
 
+.post-text {
+    margin: 0 0 5px 5px;
+    width: 185px;
+}
 .modal_btn {
     width: 260px;
     height: 45.75px;
