@@ -15,7 +15,6 @@
 
 <body>
 <header class="header">
-
     <nav class="header__content">
         <div class="header__buttons">
             <!-- 좌측 상단 instagram img -->
@@ -120,7 +119,7 @@
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
                     <div class="profile-button__picture">
-                        <img src="{{user.user_picture}}" alt="User Picture"/>
+                        <img src="{{users.user_picture}}" alt="User Picture"/>
                     </div>
                 </button>
             </a>
@@ -138,6 +137,8 @@
         <div class="content">
             <!-- 피드를 모아두는 div -->
             <div class="posts">
+
+                {% for feed in feeds %}
                 <!-- 개별 피드 -->
                 <article class="post">
                     <div class="post__header">
@@ -148,13 +149,13 @@
 
                                     class="post__avatar"
                             >
-                                <img src="{{user.user_picture}}" alt="User Picture"/>
+                                <img src="{{users.user_picture}}" alt="User Picture"/>
                             </a>
                             <!-- 게시물 작성자 아이디 -->
                             <a
                                     href="page?name=MyPage"
                                     class="post__user"
-                            >{{user.user_id}}</a
+                            >{{users.user_id}}</a
                             >
                         </div>
                         <!-- 게시물 옵션 버튼 -->
@@ -171,12 +172,12 @@
                     <div class="post__content">
                         <!-- 게시물 사진 -->
                         <div class="post__medias">
-                            <div id="myCarousel_1" class="carousel slide" data-ride="carousel">
+                            <div id="{{feed._id}}" class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
-                                    <li data-target="#myCarousel_1" data-slide-to="0" class="active"></li>
-                                    <li data-target="#myCarousel_1" data-slide-to="1"></li>
-                                    <li data-target="#myCarousel_1" data-slide-to="2"></li>
+                                    <li data-target="#{{feed._id}}" data-slide-to="0" class="active"></li>
+                                    <li data-target="#{{feed._id}}" data-slide-to="1"></li>
+                                    <li data-target="#{{feed._id}}" data-slide-to="2"></li>
                                 </ol>
 
                                 <!-- Wrapper for slides -->
@@ -184,7 +185,7 @@
                                     <div class="item active">
                                         <img
                                                 class="post__media"
-                                                src="../static/img/sijosijo.png"
+                                                src="{{feed.feed_picture}}"
                                                 alt="Post Content"
                                         />
                                     </div>
@@ -192,7 +193,7 @@
                                     <div class="item">
                                         <img
                                                 class="post__media"
-                                                src="../static/img/sijosijo.png"
+                                                src="{{feed.feed_picture}}"
                                                 alt="Post Content"
                                         />
                                     </div>
@@ -200,18 +201,18 @@
                                     <div class="item">
                                         <img
                                                 class="post__media"
-                                                src="../static/img/sijosijo.png"
+                                                src="{{feed.feed_picture}}"
                                                 alt="Post Content"
                                         />
                                     </div>
                                 </div>
 
                                 <!-- Left and right controls -->
-                                <a class="left carousel-control" href="#myCarousel_1" data-slide="prev">
+                                <a class="left carousel-control" href="#{{feed._id}}" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="right carousel-control" href="#myCarousel_1" data-slide="next">
+                                <a class="right carousel-control" href="#{{feed._id}}" data-slide="next">
                                     <span class="glyphicon glyphicon-chevron-right"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -282,9 +283,9 @@
                                           class="post__name--underline"
                                           href="#"
                                           target="_blank"
-                                  >{{user.user_id}}</a
+                                  >{{users.user_id}}</a
                                   >
-                                  퍼가요~♥
+                                  {{feed.feed_contents}}
                                 </span>
                             </div>
                             <!-- 지난 시간 text -->
@@ -300,6 +301,8 @@
                         </div>
                     </div>
                 </article>
+                {% endfor %}
+
             </div>
         </div>
 
@@ -312,12 +315,12 @@
 
                         class="side-menu__user-avatar"
                 >
-                    <img src="{{user.user_picture}}" alt="User Picture"/>
+                    <img src="{{users.user_picture}}" alt="User Picture"/>
                 </a>
                 <!-- 내 프로필 이름 및 소개 -->
                 <div class="side-menu__user-info">
                     <a href="page?name=MyPage"
-                    >{{user.user_id}}</a
+                    >{{users.user_id}}</a
                     >
                     <span>우진🐳</span>
                 </div>
@@ -464,7 +467,7 @@
                     <a
                             href="page?MyPage"
                             class="post__user"
-                    >{{user.username}}</a
+                    >{{users.user_id}}</a
                     >
                 </div>
                 <!-- 게시물 옵션 버튼 -->
@@ -492,7 +495,7 @@
                     <a
                             href="page?MyPage"
                             class="post__user"
-                    >{{user.user_id}}</a
+                    >{{users.user_id}}</a
                     >
                     <span>hello</span>
                 </div>
@@ -512,7 +515,7 @@
                     <a
                             href="MyPage.html"
                             class="post__user"
-                    >{{user.user_id}}</a
+                    >{{users.user_id}}</a
                     >
                     <span>hello hi</span>
                 </div>
@@ -531,7 +534,7 @@
                     <a
                             href="page?MyPage"
                             class="post__user"
-                    >{{user.user_id}}</a
+                    >{{users.user_id}}</a
                     >
                     <span>hi hello</span>
                 </div>
@@ -599,8 +602,8 @@
                     <span class="post__date-time">30분 전</span>
                     <!-- 댓글 달기 -->
                     <div>
-                        <input type="text" style="width: 80%;height: 100%;">
-                        <button type="button" class="btn btn-primary btn-xs"
+                        <input type="text" id="comment_contents" style="width: 80%;height: 100%;">
+                        <button type="button" class="btn btn-primary btn-xs" onclick="commentup()"
                                 style="background-color: black; float: right;">Post
                         </button>
                     </div>

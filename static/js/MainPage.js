@@ -19,3 +19,21 @@ function feedup() {
         }
     })
 }
+
+function commentup() {
+    let contents = $('#comment_contents').val()
+    let feed_id =
+
+
+    $.ajax({
+        type: "POST",
+        url: "/api/commentup",
+        data: {contents_give: contents},
+        success: function (response) {
+            if (response['result'] == 'success') {
+                alert('댓글이 등록되었습니다.')
+                window.location.href = '/'
+            }
+        }
+    })
+}
