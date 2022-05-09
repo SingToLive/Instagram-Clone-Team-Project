@@ -22,7 +22,7 @@ html, body {
 /*가입창*/
 .signup-form {
     position: relative;
-    top: 20px;
+    top: 80px;
     width: 400px;
     height: 600px;
     margin: auto;
