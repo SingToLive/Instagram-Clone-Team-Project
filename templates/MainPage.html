@@ -10,10 +10,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../static/js/MainPage.js"></script>
 </head>
 
 <body>
 <header class="header">
+
     <nav class="header__content">
         <div class="header__buttons">
             <!-- 좌측 상단 instagram img -->
@@ -118,7 +120,7 @@
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
                     <div class="profile-button__picture">
-                        <img src="../static/img/sijosijo.png" alt="User Picture"/>
+                        <img src="{{user.user_picture}}" alt="User Picture"/>
                     </div>
                 </button>
             </a>
@@ -146,13 +148,13 @@
 
                                     class="post__avatar"
                             >
-                                <img src="../static/img/sijosijo.png" alt="User Picture"/>
+                                <img src="{{user.user_picture}}" alt="User Picture"/>
                             </a>
                             <!-- 게시물 작성자 아이디 -->
                             <a
                                     href="page?name=MyPage"
                                     class="post__user"
-                            >woodindin</a
+                            >{{user.user_id}}</a
                             >
                         </div>
                         <!-- 게시물 옵션 버튼 -->
@@ -264,7 +266,7 @@
                             <div class="post__likes">
                                 <!-- 좋아요 누른 사람 프사 -->
                                 <a href="#" class="post__likes-avatar">
-                                    <img src="../static/img/default-user.png" alt="User Picture"/>
+                                    <img src="../static/img/default_user.png" alt="User Picture"/>
                                 </a>
                                 <!-- ㅇㅇ님 외 00명이 좋아합니다 -->
                                 <span>
@@ -280,7 +282,7 @@
                                           class="post__name--underline"
                                           href="#"
                                           target="_blank"
-                                  >woodindin</a
+                                  >{{user.user_id}}</a
                                   >
                                   퍼가요~♥
                                 </span>
@@ -310,12 +312,12 @@
 
                         class="side-menu__user-avatar"
                 >
-                    <img src="../static/img/sijosijo.png" alt="User Picture"/>
+                    <img src="{{user.user_picture}}" alt="User Picture"/>
                 </a>
                 <!-- 내 프로필 이름 및 소개 -->
                 <div class="side-menu__user-info">
                     <a href="page?name=MyPage"
-                    >woodindin</a
+                    >{{user.user_id}}</a
                     >
                     <span>우진🐳</span>
                 </div>
@@ -330,7 +332,7 @@
                     <div class="side-menu__suggestion">
                         <!-- 추천 계정 프로필 사진 -->
                         <a href="#" class="side-menu__suggestion-avatar">
-                            <img src="../static/img/default-user.png" alt="User Picture"/>
+                            <img src="../static/img/default_user.png" alt="User Picture"/>
                         </a>
                         <div class="side-menu__suggestion-info">
                             <a href="#">user01</a>
@@ -387,9 +389,9 @@
 
 <!-- 게시물 업로드 모달창 -->
 <div id="post_up_modal">
-    이미지 url : <input type="text"><br>
-    내용 : <input type="text">
-    <button type="button" class="btn btn-primary btn-xs"
+    이미지 url : <input type="text" id="feed_picture"><br>
+    내용 : <input type="text" id="feed_contents">
+    <button type="button" class="btn btn-primary btn-xs" onclick="feedup()"
             style="background-color: black; float: right;">Post
     </button>
     <button type="button" class="btn btn-primary btn-xs modal_close_btn"
@@ -462,7 +464,7 @@
                     <a
                             href="page?MyPage"
                             class="post__user"
-                    >woodindin</a
+                    >{{user.username}}</a
                     >
                 </div>
                 <!-- 게시물 옵션 버튼 -->
@@ -490,7 +492,7 @@
                     <a
                             href="page?MyPage"
                             class="post__user"
-                    >woodindin</a
+                    >{{user.user_id}}</a
                     >
                     <span>hello</span>
                 </div>
@@ -510,7 +512,7 @@
                     <a
                             href="MyPage.html"
                             class="post__user"
-                    >woodindin</a
+                    >{{user.user_id}}</a
                     >
                     <span>hello hi</span>
                 </div>
@@ -529,7 +531,7 @@
                     <a
                             href="page?MyPage"
                             class="post__user"
-                    >woodindin</a
+                    >{{user.user_id}}</a
                     >
                     <span>hi hello</span>
                 </div>
@@ -583,7 +585,7 @@
                     <div class="post__likes">
                         <!-- 좋아요 누른 사람 프사 -->
                         <a href="#" class="post__likes-avatar">
-                            <img src="../static/img/default-user.png" alt="User Picture"/>
+                            <img src="../static/img/default_user.png" alt="User Picture"/>
                         </a>
                         <!-- ㅇㅇ님 외 00명이 좋아합니다 -->
                         <span>
@@ -718,7 +720,7 @@
     <button class="navbar__button profile-button">
         <div class="profile-button__border"></div>
         <div class="profile-button__picture">
-            <img src="../static/img/default-user.png" alt="User Picture"/>
+            <img src="../static/img/default_user.png" alt="User Picture"/>
         </div>
     </button>
 </nav>
