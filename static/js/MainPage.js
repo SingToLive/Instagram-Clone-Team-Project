@@ -20,15 +20,18 @@ function feedup() {
     })
 }
 
-function commentup() {
-    let contents = $('#comment_contents').val()
-    let feed_id =
+function commentup(id, time) {
+    let contents = document.getElementById(time).value
+    console.log(contents)
+
+    let feed_id = id
+
 
 
     $.ajax({
         type: "POST",
         url: "/api/commentup",
-        data: {contents_give: contents},
+        data: {contents_give: contents, feedID_give: feed_id},
         success: function (response) {
             if (response['result'] == 'success') {
                 alert('댓글이 등록되었습니다.')

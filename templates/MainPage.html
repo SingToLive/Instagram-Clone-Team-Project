@@ -172,7 +172,7 @@
                     <div class="post__content">
                         <!-- 게시물 사진 -->
                         <div class="post__medias">
-                            <div id="{{feed._id}}" class="carousel slide" data-ride="carousel">
+                            <div id="{{feed._id}}"  class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     <li data-target="#{{feed._id}}" data-slide-to="0" class="active"></li>
@@ -292,8 +292,8 @@
                             <span class="post__date-time">30분 전</span>
                             <!-- 댓글 달기 -->
                             <div>
-                                <input type="text" style="width: 90%;height: 100%;">
-                                <button type="button" class="btn btn-primary btn-sm"
+                                <input type="text" style="width: 90%;height: 100%;" id="{{feed.feed_time}}">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="commentup('{{feed._id}}','{{feed.feed_time}}')"
                                         style="background-color: black; float: right;">Post
                                 </button>
                             </div>
@@ -602,7 +602,7 @@
                     <span class="post__date-time">30분 전</span>
                     <!-- 댓글 달기 -->
                     <div>
-                        <input type="text" id="comment_contents" style="width: 80%;height: 100%;">
+                        <input type="text" class="comment_contents" style="width: 80%;height: 100%;">
                         <button type="button" class="btn btn-primary btn-xs" onclick="commentup()"
                                 style="background-color: black; float: right;">Post
                         </button>

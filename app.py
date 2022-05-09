@@ -25,7 +25,7 @@ def home():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"user_email": payload['id']})
         feed_info = db.feeds.find({"user_id": user_info['_id']})
-        print(feed_info)
+
         return render_template('MainPage.html', users=user_info, feeds=feed_info)
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
@@ -115,7 +115,7 @@ def FeedUpReceive():
     db.feeds.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '게시물이 업로드 되었습니다.'})
 
-# 게시물 업로드 API
+# 댓글 업로드 API
 @app.route('/api/commentup', methods=['POST'])
 def CommentUpReceive():
     token_receive = request.cookies.get('mytoken')
@@ -123,12 +123,14 @@ def CommentUpReceive():
     user_info = db.users.find_one({"user_email": payload['id']})
 
     contents_receive = request.form['contents_give']
+    feedID_receive = request.form['feedID_give']
     userID_receive = user_info['_id']
 
     doc = {
         'comment_contents': contents_receive,
         'comment_time': dt.datetime.utcnow(),
-        'user_id': userID_receive,
+        'feed_id' : feedID_receive,
+        'user_id': userID_receive
     }
     db.comments.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '댓글이 등록되었습니다.'})
