@@ -145,7 +145,7 @@ def login_page():
         user_password = hashlib.sha256(user_password.encode('utf-8')).hexdigest()
         id = db.users.find_one({"user_email": user_id})
         if id == None:
-            return jsonify({'result': "fail", 'msg': '가입되지 않은 아이디입니다!'})
+            return jsonify({'result': "fail", 'msg': '가입되지 않은 이메일입니다!'})
         else:
             if id["user_pw"] != user_password:
                 return jsonify({'result': "fail", 'msg': '잘못된 비밀번호입니다!'})
