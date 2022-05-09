@@ -38,18 +38,23 @@
             })
         }
 
-            // 이메일 구별
+
+        // 이메일 구별
         function chk_email() {
             let emailID = document.myForm.user_email.value;
             atpos = emailID.indexOf("@");
             dotpos = emailID.lastIndexOf(".");
 
-            if (atpos < 1 || (dotpos - atpos < 2)) {
+            if (emailID == '') {
+                alert('입력해주세요!')
+                return false;
+
+            } else if (atpos < 1 || (dotpos - atpos < 2)) {
                 document.myForm.user_email.focus();
-                alert('이메일이 틀렸습니다')
+                alert('올바른 이메일이 아닙니다')
                 return false;
             }
-            alert('올바른 메일입니다')
+            alert('올바른 이메일입니다')
             return (true);
         }
 
@@ -84,9 +89,8 @@
             if ((id.length < 6) || (id.length > 20)) {
                 alert("아이디를 6자리 ~ 20자리 이내로 입력해주세요.");
                 return false;
-            }
-            else if ((num < 0 && eng < 0) || (num < 0 && spe > 0) || (num < 0 && kor > 0)
-                        || (eng < 0 && spe > 0) || (eng < 0 && kor > 0) || (spe > 0 && kor > 0)) {
+            } else if ((num < 0 && eng < 0) || (num < 0 && spe > 0) || (num < 0 && kor > 0)
+                || (eng < 0 && spe > 0) || (eng < 0 && kor > 0) || (spe > 0 && kor > 0)) {
                 alert("아이디는 영문,숫자만 입력해주세요.");
                 return false;
             }
