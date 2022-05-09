@@ -1,22 +1,46 @@
-from flask import Flask, render_template, request, jsonify, session
-import hashlib
 from pymongo import MongoClient
+import jwt
+import datetime as dt
+import hashlib
+from flask import Flask, render_template, jsonify, request, redirect, url_for
+from werkzeug.utils import secure_filename
+from datetime import timedelta
+from datetime import datetime
 import certifi
 
 client = MongoClient('mongodb+srv://test:sparta@cluster0.qttfj.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=certifi.where())
 db = client.InstarClone
 
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 app.secret_key = "SPARTA"
+SECRET_KEY = 'SAJOSAJO'
 
 # 로그인메인
 @app.route('/')
-def login():
+def home():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"user_email": payload['id']})
+        feed_info = db.feeds.find({"user_id": user_info['_id']})
+
+        return render_template('MainPage.html', users=user_info, feeds=feed_info)
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
     # session.pop('user_id')
-    if "user_id" in session:
-        return render_template('MainPage.html')
-    else:
-        return render_template("LoginPage.html")
+    # if "user_id" in session:
+    #     return render_template('MainPage.html')
+    # else:
+    #     return render_template("LoginPage.html")
+
+@app.route('/login')
+def login():
+    msg = request.args.get("msg")
+    return render_template('LoginPage.html', msg=msg)
 
 #메인페이지
 @app.route('/MainPage')
@@ -54,7 +78,8 @@ def SignUpReceive():
         'user_email': email_receive,
         'user_name': name_receive,
         'user_id': id_receive,
-        'user_pw': pw_receive
+        'user_pw': pw_receive,
+        'user_picture': "../static/img/default_user.png"
     }
 
     id = db.users.find_one({"user_id": id_receive})
@@ -70,27 +95,74 @@ def SignUpReceive():
         return jsonify({'result': 'success', 'msg': '회원가입 되었습니다!'})
 
 
-@app.route("/login", methods=["GET", "POST"])
+# 게시물 업로드 API
+@app.route('/api/feedup', methods=['POST'])
+def FeedUpReceive():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    user_info = db.users.find_one({"user_email": payload['id']})
+
+    picture_receive = request.form['picture_give']
+    contents_receive = request.form['contents_give']
+    userID_receive = user_info['_id']
+
+    doc = {
+        'feed_picture': picture_receive,
+        'feed_contents': contents_receive,
+        'user_id': userID_receive,
+        'feed_time': dt.datetime.utcnow()
+    }
+    db.feeds.insert_one(doc)
+    return jsonify({'result': 'success', 'msg': '게시물이 업로드 되었습니다.'})
+
+# 댓글 업로드 API
+@app.route('/api/commentup', methods=['POST'])
+def CommentUpReceive():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    user_info = db.users.find_one({"user_email": payload['id']})
+
+    contents_receive = request.form['contents_give']
+    feedID_receive = request.form['feedID_give']
+    userID_receive = user_info['_id']
+
+    doc = {
+        'comment_contents': contents_receive,
+        'comment_time': dt.datetime.utcnow(),
+        'feed_id' : feedID_receive,
+        'user_id': userID_receive
+    }
+    db.comments.insert_one(doc)
+    return jsonify({'result': 'success', 'msg': '댓글이 등록되었습니다.'})
+
+
+# @app.route("/login", methods=["GET", "POST"])
+@app.route("/signin", methods=["POST"])
 def login_page():
     if request.method == "POST":
         user_id = request.form["user_id"]
         user_password = request.form["user_password"]
         user_password = hashlib.sha256(user_password.encode('utf-8')).hexdigest()
-        id = db.users.find_one({"user_id": user_id})
+        id = db.users.find_one({"user_email": user_id})
         if id == None:
             return jsonify({'result': "fail", 'msg': '가입되지 않은 이메일입니다!'})
         else:
             if id["user_pw"] != user_password:
                 return jsonify({'result': "fail", 'msg': '잘못된 비밀번호입니다!'})
             else:
-                session['user_id'] = request.form['user_id']
-                return jsonify({'result': "success", 'msg': '로그인 되었습니다!'})
+                # session['user_id'] = request.form['user_id']
+                payload = {
+                    'id': user_id,
+                    'exp': datetime.utcnow() + timedelta(seconds=60 * 10)  # 로그인 10분 유지
+                }
+                token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+                return jsonify({'result': "success",'token': token, 'msg': '로그인 되었습니다!'})
 
 
-@app.route('/logout', methods=["GET"])
-def logout():
-    session.pop('user_id')
-    return jsonify({'msg': '로그아웃 되었습니다!'})
+# @app.route('/logout', methods=["GET"])
+# def logout():
+#     # session.pop('user_id')
+#     return jsonify({'msg': '로그아웃 되었습니다!'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
