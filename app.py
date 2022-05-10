@@ -125,8 +125,7 @@ def FeedUpReceive():
     token_receive = request.cookies.get('mytoken')
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
     user_info = db.users.find_one({"user_email": payload['id']})
-
-    picture_receive = request.form['picture_give']
+    picture_receive = (request.form.getlist('picture_give'))
     contents_receive = request.form['contents_give']
     userID_receive = user_info['_id']
 

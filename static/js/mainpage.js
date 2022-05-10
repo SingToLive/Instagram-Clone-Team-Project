@@ -1,11 +1,23 @@
-// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-    Element.prototype.setStyle = function (styles) {
-        for (var k in styles) this.style[k] = styles[k];
-        return this;
-    };
+
 
 function feedup() {
-    let picture = $('#feed_picture').val()
+    let picture =[]
+    if($('#feed_picture_1').val()!=''){
+        picture.push($('#feed_picture_1').val())
+    }
+    if($('#feed_picture_2').val()!=''){
+        picture.push($('#feed_picture_2').val())
+    }
+    if($('#feed_picture_3').val()!=''){
+        picture.push($('#feed_picture_3').val())
+    }
+    if($('#feed_picture_4').val()!=''){
+        picture.push($('#feed_picture_4').val())
+    }
+    if($('#feed_picture_5').val()!=''){
+        picture.push($('#feed_picture_5').val())
+    }
+    console.log(picture)
     let contents = $('#feed_contents').val()
 
 
@@ -13,6 +25,7 @@ function feedup() {
     $.ajax({
         type: "POST",
         url: "/api/feedup",
+        traditional: true,
         data: {picture_give: picture, contents_give: contents},
         success: function (response) {
             if (response['result'] == 'success') {
@@ -202,3 +215,8 @@ function feed__modal(id) {
 
 }
 
+// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+Element.prototype.setStyle = function (styles) {
+    for (var k in styles) this.style[k] = styles[k];
+    return this;
+};
