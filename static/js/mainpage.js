@@ -1,26 +1,8 @@
-$(document).ready(function () {
-    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
     Element.prototype.setStyle = function (styles) {
         for (var k in styles) this.style[k] = styles[k];
         return this;
     };
-
-    option_modal_event = document.getElementsByClassName('post__more-options')
-    for (var i = 0; i < option_modal_event.length; i++) {
-        option_modal_event[i].addEventListener('click', function () {
-            modal('option_modal');
-
-        });
-    }
-
-
-    postup_modal_event = document.getElementsByClassName('postup__button')
-    for (var i = 0; i < postup_modal_event.length; i++) {
-        postup_modal_event[i].addEventListener('click', function () {
-            modal('post_up_modal');
-        });
-    }
-});
 
 function feedup() {
     let picture = $('#feed_picture').val()
@@ -220,9 +202,3 @@ function feed__modal(id) {
 
 }
 
-modal_event = document.getElementsByClassName('feed-option')
-for (var i = 0; i < modal_event.length; i++) {
-    modal_event[i].addEventListener('click', function () {
-        feed__modal('feed_modal');
-    });
-}
