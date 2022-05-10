@@ -995,7 +995,7 @@ img {
     border-radius: 3px;
 }
 
-#post_modal {
+.post_modal {
     display: none;
     width: 1200px;
     height: 900px;

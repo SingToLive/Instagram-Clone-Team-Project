@@ -28,9 +28,10 @@ def home():
         user_id = db.users.find_one({"user_email": payload['id']})['_id']
         user_followingInfo = db.users.find_one({"_id": user_id})
         feeds = []
-        a = user_followingInfo['following']
-        a.append(user_id)
-        user_recommend = list(db.users.find({"_id": {'$nin': a}}))
+
+
+
+        user_recommend = list(db.users.find({"_id": {'$nin': user_followingInfo['following']}}))
         for following in user_followingInfo["following"]:
             following_feed = db.feeds.find({"user_id": following})
             following_id = db.users.find_one({"_id": following}, {"_id":0, "user_email":0, "user_pw":0})
@@ -153,12 +154,14 @@ def CommentUpReceive():
     contents_receive = request.form['contents_give']
     feedID_receive = request.form['feedID_give']
     userID_receive = user_info['_id']
+    userName_receive = user_info['user_id']
 
     doc = {
         'comment_contents': contents_receive,
         'comment_time': dt.datetime.utcnow(),
         'feed_id' : feedID_receive,
-        'user_id': userID_receive
+        'user_id': userID_receive,
+        'user_name' : userName_receive
     }
     db.comments.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '댓글이 등록되었습니다.'})

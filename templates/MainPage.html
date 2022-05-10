@@ -174,12 +174,12 @@
                     <div class="post__content">
                         <!-- 게시물 사진 -->
                         <div class="post__medias">
-                            <div id="{{feed._id}}" class="carousel slide" data-ride="carousel"
+                            <div id="{{loop.index+10000}}" class="carousel slide" data-ride="carousel"
                                  data-interval="false">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     {% for repeat in feed.feed_picture %}
-                                    <li data-target="#{{feed._id}}" class="active"></li>
+                                    <li data-target="#{{loop.index+10000}}" class="active"></li>
                                     {% endfor %}
                                 </ol>
 
@@ -209,11 +209,11 @@
                                 </div>
 
                                 <!-- Left and right controls -->
-                                <a class="left carousel-control" href="#{{feed._id}}" data-slide="prev">
+                                <a class="left carousel-control" href="#{{loop.index+10000}}" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="right carousel-control" href="#{{feed._id}}" data-slide="next">
+                                <a class="right carousel-control" href="#{{loop.index+10000}}" data-slide="next">
                                     <span class="glyphicon glyphicon-chevron-right"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -232,7 +232,7 @@
                                 </svg>
                             </button>
                             <!-- 댓글 버튼 -->
-                            <button class="post__button" onclick="post_modal('post_modal', '{{feed._id}}')">
+                            <button class="post__button" onclick="post_modal('{{feed._id}}')">
                                 <svg aria-label="댓글 달기" class="_8-yf5 " color="#262626" fill="#262626" height="24"
                                      role="img" viewBox="0 0 24 24" width="24">
                                     <path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none"
@@ -303,6 +303,203 @@
                         </div>
                     </div>
                 </article>
+
+                <!-- 댓글버튼 클릭 게시물 모달창 -->
+                <div class="post_modal" id="{{feed._id}}">
+                    <div style="width: 60%; height: 100%; float: left">
+                        <div class="post__medias">
+                            <div id="{{loop.index}}" class="carousel slide" data-ride="carousel" data-interval="false">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    {% for repeat in feed.feed_picture %}
+                                    <li data-target="#{{loop.index}}" class="active"></li>
+                                    {% endfor %}
+
+                                </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    {% for repeat in feed.feed_picture %}
+                                    {% if (loop.index==1)%}
+                                    <div class="item active">
+                                        <img
+                                                class="post__media"
+                                                src="{{repeat}}"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+                                    {% else %}
+                                    <div class="item">
+                                        <img
+                                                class="post__media"
+                                                src="{{repeat}}"
+                                                alt="Post Content"
+                                        />
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#{{loop.index}}" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#{{loop.index}}" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div style="width: 40%; height: 100%; float: right;">
+                        <div style="width: 100%; float: left;">
+                            <div class="post__header">
+                                <div class="post__profile">
+                                    <!-- 게시물 작성자 프사 -->
+                                    <a
+                                            href="page?MyPage"
+                                            class="post__avatar"
+                                    >
+                                        <img src="{{feed.user_picture}}" alt="User Picture"/>
+                                    </a>
+                                    <!-- 게시물 작성자 아이디 -->
+                                    <a
+                                            href="page?MyPage"
+                                            class="post__user"
+                                    >{{feed.user_id}}</a
+                                    >
+                                </div>
+                                <!-- 게시물 옵션 버튼 -->
+                                <button class="post__more-options" onclick="modal('option_modal')">
+                                    <svg aria-label="옵션 더 보기" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                         role="img" viewBox="0 0 24 24" width="24">
+                                        <circle cx="12" cy="12" r="1.5"></circle>
+                                        <circle cx="6" cy="12" r="1.5"></circle>
+                                        <circle cx="18" cy="12" r="1.5"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div style="width: 100%; height: 75%; float: left; ">
+                            <div class="post__main" style="width: 100%;">
+                                <div class="post__profile">
+                                    <!-- 게시물 작성자 프사 -->
+                                    <a
+                                            href="page?MyPage"
+                                            class="post__avatar"
+                                    >
+                                        <img src="{{feed.user_picture}}" alt="User Picture"/>
+                                    </a>
+                                    <!-- 게시물 작성자 아이디 -->
+                                    <a
+                                            href="page?MyPage"
+                                            class="post__user"
+                                    >{{feed.user_id}}</a
+                                    >
+                                    <span>{{feed.feed_contents}}</span>
+                                </div>
+                                <!-- 수정 승태님!!!!!!!!! -->
+                                <span class="post__date-time">2시간 전</span>
+                            </div>
+                            <!-- 댓글달리는곳 -->
+                            <div class="post__main" style="width: 100%;">
+                                <div class="post__profile">
+                                    <!-- 게시물 작성자 프사 -->
+                                    <a
+                                            href="MyPage.html"
+                                            class="post__avatar"
+                                    >
+                                        <img src="../static/img/sijosijo.png" alt="User Picture"/>
+                                    </a>
+                                    <!-- 게시물 작성자 아이디 -->
+                                    <a
+                                            href="MyPage.html"
+                                            class="post__user"
+                                    >{{users.user_id}}</a
+                                    >
+                                    <span>hello hi</span>
+                                </div>
+                                <!-- 수정 승태님!!!!!!!!! -->
+                                <span class="post__date-time">1시간 전</span>
+                            </div>
+                        </div>
+                        <div style="width: 100%; float: right; border-top: 1px solid var(--border);">
+                            <div class="post__footer">
+                                <div class="post__buttons">
+                                    <!-- 좋아요 버튼 -->
+                                    <button class="post__button">
+                                        <svg aria-label="좋아요" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                             role="img" viewBox="0 0 24 24" width="24">
+                                            <path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path>
+                                        </svg>
+                                    </button>
+                                    <!-- 댓글 버튼 -->
+                                    <button class="post__button">
+                                        <svg aria-label="댓글 달기" class="_8-yf5 " color="#262626" fill="#262626"
+                                             height="24"
+                                             role="img" viewBox="0 0 24 24" width="24">
+                                            <path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none"
+                                                  stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+                                        </svg>
+                                    </button>
+                                    <!-- 공유 버튼 -->
+                                    <button class="post__button">
+                                        <svg aria-label="게시물 공유" class="_8-yf5 " color="#262626" fill="#262626"
+                                             height="24"
+                                             role="img" viewBox="0 0 24 24" width="24">
+                                            <line fill="none" stroke="currentColor" stroke-linejoin="round"
+                                                  stroke-width="2"
+                                                  x1="22" x2="9.218" y1="3" y2="10.083"></line>
+                                            <polygon fill="none"
+                                                     points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
+                                                     stroke="currentColor" stroke-linejoin="round"
+                                                     stroke-width="2"></polygon>
+                                        </svg>
+                                        </svg>
+                                    </button>
+
+                                    <div class="post__indicators"></div>
+                                    <!-- 저장 버튼 -->
+                                    <button class="post__button post__button--align-right">
+                                        <svg aria-label="저장" class="_8-yf5 " color="#262626" fill="#262626" height="24"
+                                             role="img" viewBox="0 0 24 24" width="24">
+                                            <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+                                                     stroke="currentColor" stroke-linecap="round"
+                                                     stroke-linejoin="round"
+                                                     stroke-width="2"></polygon>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div class="post__infos">
+                                    <div class="post__likes">
+                                        <!-- 좋아요 누른 사람 프사 -->
+                                        <a href="#" class="post__likes-avatar">
+                                            <img src="../static/img/default_user.png" alt="User Picture"/>
+                                        </a>
+                                        <!-- ㅇㅇ님 외 00명이 좋아합니다 -->
+                                        <span>
+                                    <a class="post__name--underline" href="#">유저 아이디</a>님
+                                    <a>외 00명</a>이 좋아합니다
+                                </span>
+                                    </div>
+
+
+                                    <!-- 지난 시간 text -->
+                                    <span class="post__date-time">{{feed.time}}{{feed.unit}}</span>
+                                    <!-- 댓글 달기 -->
+                                    <div>
+                                        <input type="text" class="comment_contents" style="width: 80%;height: 100%;">
+                                        <button type="button" class="btn btn-primary btn-xs" onclick="commentup()"
+                                                style="background-color: black; float: right;">Post
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
 
             </div>
@@ -412,217 +609,6 @@
     <button type="button" class="btn btn-primary btn-xs" onclick="feedup()"
             style="background-color: black; float: right;margin:8px 10px 0 0">Post
     </button>
-</div>
-
-<!-- 댓글버튼 클릭 게시물 모달창 -->
-<div id="post_modal">
-    <div style="width: 60%; height: 100%; float: left">
-        <div class="post__medias">
-            <div id="myCarousel_4" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel_4" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel_4" data-slide-to="1"></li>
-                    <li data-target="#myCarousel_4" data-slide-to="2"></li>
-                </ol>
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img
-                                class="post__media"
-                                src=""
-                                alt="Post Content"
-                        />
-                    </div>
-                    <div class="item">
-                        <img
-                                class="post__media"
-                                src=""
-                                alt="Post Content"
-                        />
-                    </div>
-
-                    <div class="item">
-                        <img
-                                class="post__media"
-                                src=""
-                                alt="Post Content"
-                        />
-                    </div>
-                </div>
-
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel_4" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel_4" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-
-        </div>
-    </div>
-    <div style="width: 40%; height: 100%; float: right;">
-        <div style="width: 100%; float: left;">
-            <div class="post__header">
-                <div class="post__profile">
-                    <!-- 게시물 작성자 프사 -->
-                    <a
-                            href="page?MyPage"
-                            class="post__avatar"
-                    >
-                        <img src="../static/img/sijosijo.png" alt="User Picture"/>
-                    </a>
-                    <!-- 게시물 작성자 아이디 -->
-                    <a
-                            href="page?MyPage"
-                            class="post__user"
-                    >{{users.user_id}}</a
-                    >
-                </div>
-                <!-- 게시물 옵션 버튼 -->
-                <button class="post__more-options" onclick="modal('option_modal')">
-                    <svg aria-label="옵션 더 보기" class="_8-yf5 " color="#262626" fill="#262626" height="24"
-                         role="img" viewBox="0 0 24 24" width="24">
-                        <circle cx="12" cy="12" r="1.5"></circle>
-                        <circle cx="6" cy="12" r="1.5"></circle>
-                        <circle cx="18" cy="12" r="1.5"></circle>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div style="width: 100%; height: 75%; float: left; ">
-            <div class="post__main" style="width: 100%;">
-                <div class="post__profile">
-                    <!-- 게시물 작성자 프사 -->
-                    <a
-                            href="page?MyPage"
-                            class="post__avatar"
-                    >
-                        <img src="../static/img/sijosijo.png" alt="User Picture"/>
-                    </a>
-                    <!-- 게시물 작성자 아이디 -->
-                    <a
-                            href="page?MyPage"
-                            class="post__user"
-                    >{{users.user_id}}</a
-                    >
-                    <span></span>
-                </div>
-                <span class="post__date-time">2시간 전</span>
-            </div>
-
-            <div class="post__main" style="width: 100%;">
-                <div class="post__profile">
-                    <!-- 게시물 작성자 프사 -->
-                    <a
-                            href="MyPage.html"
-                            class="post__avatar"
-                    >
-                        <img src="../static/img/sijosijo.png" alt="User Picture"/>
-                    </a>
-                    <!-- 게시물 작성자 아이디 -->
-                    <a
-                            href="MyPage.html"
-                            class="post__user"
-                    >{{users.user_id}}</a
-                    >
-                    <span>hello hi</span>
-                </div>
-                <span class="post__date-time">1시간 전</span>
-            </div>
-            <div class="post__main" style="width: 100%;">
-                <div class="post__profile">
-                    <!-- 게시물 작성자 프사 -->
-                    <a
-                            href="page?MyPage"
-                            class="post__avatar"
-                    >
-                        <img src="../static/img/sijosijo.png" alt="User Picture"/>
-                    </a>
-                    <!-- 게시물 작성자 아이디 -->
-                    <a
-                            href="page?MyPage"
-                            class="post__user"
-                    >{{users.user_id}}</a
-                    >
-                    <span>hi hello</span>
-                </div>
-                <span class="post__date-time">30분 전</span>
-            </div>
-        </div>
-        <div style="width: 100%; float: right; border-top: 1px solid var(--border);">
-            <div class="post__footer">
-                <div class="post__buttons">
-                    <!-- 좋아요 버튼 -->
-                    <button class="post__button">
-                        <svg aria-label="좋아요" class="_8-yf5 " color="#262626" fill="#262626" height="24"
-                             role="img" viewBox="0 0 24 24" width="24">
-                            <path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path>
-                        </svg>
-                    </button>
-                    <!-- 댓글 버튼 -->
-                    <button class="post__button">
-                        <svg aria-label="댓글 달기" class="_8-yf5 " color="#262626" fill="#262626" height="24"
-                             role="img" viewBox="0 0 24 24" width="24">
-                            <path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none"
-                                  stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
-                        </svg>
-                    </button>
-                    <!-- 공유 버튼 -->
-                    <button class="post__button">
-                        <svg aria-label="게시물 공유" class="_8-yf5 " color="#262626" fill="#262626" height="24"
-                             role="img" viewBox="0 0 24 24" width="24">
-                            <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
-                                  x1="22" x2="9.218" y1="3" y2="10.083"></line>
-                            <polygon fill="none"
-                                     points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
-                                     stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
-                        </svg>
-                        </svg>
-                    </button>
-
-                    <div class="post__indicators"></div>
-                    <!-- 저장 버튼 -->
-                    <button class="post__button post__button--align-right">
-                        <svg aria-label="저장" class="_8-yf5 " color="#262626" fill="#262626" height="24"
-                             role="img" viewBox="0 0 24 24" width="24">
-                            <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21"
-                                     stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                     stroke-width="2"></polygon>
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="post__infos">
-                    <div class="post__likes">
-                        <!-- 좋아요 누른 사람 프사 -->
-                        <a href="#" class="post__likes-avatar">
-                            <img src="../static/img/default_user.png" alt="User Picture"/>
-                        </a>
-                        <!-- ㅇㅇ님 외 00명이 좋아합니다 -->
-                        <span>
-                                    <a class="post__name--underline" href="#">유저 아이디</a>님
-                                    <a>외 00명</a>이 좋아합니다
-                                </span>
-                    </div>
-
-
-                    <!-- 지난 시간 text -->
-                    <span class="post__date-time">30분 전</span>
-                    <!-- 댓글 달기 -->
-                    <div>
-                        <input type="text" class="comment_contents" style="width: 80%;height: 100%;">
-                        <button type="button" class="btn btn-primary btn-xs" onclick="commentup()"
-                                style="background-color: black; float: right;">Post
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 

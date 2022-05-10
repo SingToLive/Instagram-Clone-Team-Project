@@ -71,17 +71,7 @@ function commentup(id, time) {
     })
 }
 
-function post_modal(id, feed_id) {
-
-    let feed = feed_id
-    console.log(feed)
-    $.ajax({
-        type: "POST",
-        url: "/api/modal",
-        data: {feedID_give: feed},
-
-    })
-
+function post_modal(id) {
 
     var zIndex
     if (id == "option_modal") {
