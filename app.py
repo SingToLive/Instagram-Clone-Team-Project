@@ -135,7 +135,7 @@ def FeedUpReceive():
     db.feeds.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '게시물이 업로드 되었습니다.'})
 
-# 게시물 업로드 API
+# 댓글 업로드 API
 @app.route('/api/commentup', methods=['POST'])
 def CommentUpReceive():
     token_receive = request.cookies.get('mytoken')
@@ -143,12 +143,14 @@ def CommentUpReceive():
     user_info = db.users.find_one({"user_email": payload['id']})
 
     contents_receive = request.form['contents_give']
+    feedID_receive = request.form['feedID_give']
     userID_receive = user_info['_id']
 
     doc = {
         'comment_contents': contents_receive,
         'comment_time': dt.datetime.utcnow(),
-        'user_id': userID_receive,
+        'feed_id' : feedID_receive,
+        'user_id': userID_receive
     }
     db.comments.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '댓글이 등록되었습니다.'})
@@ -163,7 +165,7 @@ def login_page():
         user_password = hashlib.sha256(user_password.encode('utf-8')).hexdigest()
         id = db.users.find_one({"user_email": user_id})
         if id == None:
-            return jsonify({'result': "fail", 'msg': '가입되지 않은 아이디입니다!'})
+            return jsonify({'result': "fail", 'msg': '가입되지 않은 이메일입니다!'})
         else:
             if id["user_pw"] != user_password:
                 return jsonify({'result': "fail", 'msg': '잘못된 비밀번호입니다!'})

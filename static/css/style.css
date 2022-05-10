@@ -74,7 +74,7 @@ img {
     width: 100%;
     height: var(--header-height);
     background-color: var(--primary);
-
+    background-image: linear-gradient(to left, #a1c4fd 0%, #f2fcfe 100%);
     display: flex;
     justify-content: center;
 
@@ -222,7 +222,7 @@ img {
 
 /* Main Content */
 .main-container {
-    background-color: var(--primary);
+    background-image: linear-gradient(to bottom, #ffffff 0%, #f2fcfe 50%, #ace0f9 100%);
 
     margin-top: var(--header-height);
     margin-bottom: var(--nav-height);
@@ -239,6 +239,7 @@ img {
 
     margin: 0 auto;
     display: flex;
+
 }
 
 .content {
@@ -248,6 +249,10 @@ img {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+}
+
+.carousel-inner {
+    background-color: white;
 }
 
 .stories {
@@ -634,7 +639,7 @@ img {
     width: 56px;
     height: 56px;
     border-radius: 50%;
-
+    background-image: linear-gradient(to top, white 0%, white 100%);
     margin-right: 12px;
     flex-shrink: 0;
 
@@ -858,9 +863,9 @@ img {
 .profile-button__border {
     display: none;
 
-    width: 30px;
-    height: 30px;
-    border: 1px solid var(--text-dark);
+    width: 27px;
+    height: 27px;
+    border: 1px solid white;
     border-radius: 50%;
 
     position: absolute;
@@ -874,10 +879,10 @@ img {
 }
 
 .profile-button__picture {
-    width: 24px;
-    height: 24px;
+    width: 27px;
+    height: 27px;
     border-radius: 50%;
-
+    background-image: linear-gradient(to top, white 0%, white 100%);
     overflow: hidden;
     position: relative;
 }
@@ -1005,13 +1010,19 @@ img {
     display: none;
     width: 200px;
     height: 200px;
-
-
     background-color: #fefefe;
     border: 1px solid #888;
     border-radius: 3px;
 }
+.post-url {
+    margin: 0 0 5px 5px;
+    width: 185px;
+}
 
+.post-text {
+    margin: 0 0 5px 5px;
+    width: 185px;
+}
 .modal_btn {
     width: 260px;
     height: 45.75px;
