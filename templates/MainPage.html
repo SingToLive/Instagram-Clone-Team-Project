@@ -139,6 +139,7 @@
             <div class="posts">
 
                 {% for feed in feeds %}
+                {{feed}}
                 <!-- 개별 피드 -->
                 <article class="post">
                     <div class="post__header">
@@ -149,13 +150,13 @@
 
                                     class="post__avatar"
                             >
-                                <img src="{{users.user_picture}}" alt="User Picture"/>
+                                <img src="{{feed.user_picture}}" alt="User Picture"/>
                             </a>
                             <!-- 게시물 작성자 아이디 -->
                             <a
                                     href="page?name=MyPage"
                                     class="post__user"
-                            >{{users.user_id}}</a
+                            >{{feed.user_id}}</a
                             >
                         </div>
                         <!-- 게시물 옵션 버튼 -->
@@ -283,13 +284,13 @@
                                           class="post__name--underline"
                                           href="#"
                                           target="_blank"
-                                  >{{users.user_id}}</a
+                                  >{{feed.user_id}}</a
                                   >
                                   {{feed.feed_contents}}
                                 </span>
                             </div>
                             <!-- 지난 시간 text -->
-                            <span class="post__date-time">30분 전</span>
+                            <span class="post__date-time">{{feed.time}}{{feed.unit}}</span>
                             <!-- 댓글 달기 -->
                             <div>
                                 <input type="text" style="width: 90%;height: 100%;">

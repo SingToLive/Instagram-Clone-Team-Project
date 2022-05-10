@@ -24,18 +24,38 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"user_email": payload['id']})
-        feed_info = db.feeds.find({"user_id": user_info['_id']})
-        print(feed_info)
-        return render_template('MainPage.html', users=user_info, feeds=feed_info)
+        user_id = db.users.find_one({"user_email": payload['id']})['_id']
+        user_followInfo = db.follow.find_one({"_id": user_id})
+        feeds = []
+        for follower in user_followInfo["follower"]:
+            follower_feed = db.feeds.find({"user_id": follower})
+            follower_id = db.users.find_one({"_id": follower}, {"_id":0, "user_email":0, "user_pw":0})
+            for feed in follower_feed:
+                time_pass = {}
+                a = datetime.now() - feed['feed_time']
+                if a.days > 0:
+                    time_pass['time'] = a.days
+                    time_pass['unit'] = "일 전"
+                else:
+                    if a.seconds//3600 > 0:
+                        time_pass['time'] = a.seconds//3600
+                        time_pass['unit'] = "시간 전"
+                    elif a.seconds//60 > 0:
+                        time_pass['time'] = a.seconds//60
+                        time_pass['unit'] = "분 전"
+                    else:
+                        time_pass['time'] = a.seconds
+                        time_pass['unit'] = "초 전"
+                feed.update(follower_id)
+                feed.update(time_pass)
+                feeds.append(feed)
+        return render_template('MainPage.html', users=user_info, feeds=feeds)
+
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
-    # session.pop('user_id')
-    # if "user_id" in session:
-    #     return render_template('MainPage.html')
-    # else:
-    #     return render_template("LoginPage.html")
 
 @app.route('/login')
 def login():
