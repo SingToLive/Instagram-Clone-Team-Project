@@ -26,15 +26,15 @@ def home():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"user_email": payload['id']})
         user_id = db.users.find_one({"user_email": payload['id']})['_id']
-        user_followInfo = db.follow.find_one({"_id": user_id})
+        user_followingInfo = db.users.find_one({"_id": user_id})
         feeds = []
-        a = user_followInfo['following']
+        a = user_followingInfo['following']
         a.append(user_id)
         user_recommend = list(db.users.find({"_id": {'$nin': a}}))
-        for follower in user_followInfo["follower"]:
-            follower_feed = db.feeds.find({"user_id": follower})
-            follower_id = db.users.find_one({"_id": follower}, {"_id":0, "user_email":0, "user_pw":0})
-            for feed in follower_feed:
+        for following in user_followingInfo["following"]:
+            following_feed = db.feeds.find({"user_id": following})
+            following_id = db.users.find_one({"_id": following}, {"_id":0, "user_email":0, "user_pw":0})
+            for feed in following_feed:
                 time_pass = {}
                 a = datetime.now() - feed['feed_time']
                 if a.days > 0:
@@ -50,7 +50,7 @@ def home():
                     else:
                         time_pass['time'] = a.seconds
                         time_pass['unit'] = "초 전"
-                feed.update(follower_id)
+                feed.update(following_id)
                 feed.update(time_pass)
                 feeds.append(feed)
         return render_template('MainPage.html', users=user_info, feeds=feeds, recommends=user_recommend)
@@ -95,6 +95,9 @@ def SignUpReceive():
     name_receive = request.form['name_give']
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
+    following_receive = []
+    follower_receive = []
+
 
     pw_receive = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
     
@@ -103,7 +106,9 @@ def SignUpReceive():
         'user_name': name_receive,
         'user_id': id_receive,
         'user_pw': pw_receive,
-        'user_picture': "../static/img/default_user.png"
+        'user_picture': "../static/img/default_user.png",
+        'following' : following_receive,
+        'follower' : follower_receive
     }
 
     id = db.users.find_one({"user_id": id_receive})
@@ -172,8 +177,38 @@ def ModalUpReceive():
     comment_info = db.comments.find_one({"feed_id": feed_info[0]['_id']})
     print(feed_info[0])
 
-    return render_template('MainPage.html', users=user_info, feeds=feed_info, comments=comment_info)
+    return render_template('MainPage.html', users_2=user_info, feed_2=feed_info, comments_2=comment_info)
 
+# 팔로우 API
+@app.route('/api/follow', methods=['POST'])
+def FollowReceive():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    user_info = db.users.find_one({"user_email": payload['id']})
+
+    follower_receive = ObjectId(request.form['follower_give'])
+    user_id = ObjectId(user_info['_id'])
+    user_following = db.users.find_one({"_id": user_id})
+    followingInfo=user_following['following']
+    followingInfo.append(follower_receive)
+    print(followingInfo)
+    user_follower = db.users.find_one({"_id": follower_receive})
+    followerInfo = user_follower['follower']
+    followerInfo.append(user_id)
+    print(followerInfo)
+    print(db.users)
+    db.users.update(
+        {"_id": user_id},
+        {"$set": {"following_users": list(followingInfo)}}
+    )
+    print(db.users)
+
+    db.users.update(
+        {"_id": follower_receive},
+        {"$set": {"following_users": list(followerInfo)}}
+    )
+
+    return jsonify({'result': 'success', 'msg': '게시물이 업로드 되었습니다.'})
 
 
 # @app.route("/login", methods=["GET", "POST"])

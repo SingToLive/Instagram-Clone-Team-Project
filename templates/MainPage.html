@@ -343,7 +343,7 @@
                             <a href="#">{{recommend.user_id}}</a>
                             <span>ㅇㅇ님 외 ㅇ명이 팔로우합니다ㅇㅇㅇㅇㅇㅇㅇㅇ</span>
                         </div>
-                        <button class="side-menu__suggestion-button">팔로우</button>
+                        <button class="side-menu__suggestion-button" onclick="follow('{{recommend._id}}')">팔로우</button>
                     </div>
                     {% endfor %}
                 </div>
@@ -428,14 +428,14 @@
                     <div class="item active">
                         <img
                                 class="post__media"
-                                src="{{feeds[0].feed_picture}}"
+                                src=""
                                 alt="Post Content"
                         />
                     </div>
                     <div class="item">
                         <img
                                 class="post__media"
-                                src="{{feeds[0].feed_picture}}"
+                                src=""
                                 alt="Post Content"
                         />
                     </div>
@@ -443,7 +443,7 @@
                     <div class="item">
                         <img
                                 class="post__media"
-                                src="{{feeds[0].feed_picture}}"
+                                src=""
                                 alt="Post Content"
                         />
                     </div>
@@ -738,6 +738,7 @@
     </button>
 </nav>
 <script>
+
     // 마우스 효과
     var colours = new Array("#56ccf2", "#2F80ED", "#f2fcfe", "#f2fcfe", "#ffffff"); // colours for top, right, bottom and left borders and background of bubbles
     var bubbles = 50; // maximum number of bubbles on screen

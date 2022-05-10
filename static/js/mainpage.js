@@ -1,4 +1,18 @@
-
+//팔로우 post 함수
+function follow(follower_id){
+    let follower = follower_id
+    $.ajax({
+        type: "POST",
+        url: "/api/follow",
+        traditional: true,
+        data: {follower_give: follower},
+        success: function (response) {
+            if (response['result'] == 'success') {
+                window.location.href = '/'
+            }
+        }
+    })
+}
 
 function feedup() {
     let picture =[]
@@ -220,3 +234,4 @@ Element.prototype.setStyle = function (styles) {
     for (var k in styles) this.style[k] = styles[k];
     return this;
 };
+
