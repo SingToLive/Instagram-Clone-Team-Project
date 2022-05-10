@@ -197,15 +197,15 @@ def FollowReceive():
     followerInfo.append(user_id)
     print(followerInfo)
     print(db.users)
-    db.users.update(
+    db.users.update_one(
         {"_id": user_id},
-        {"$set": {"following_users": list(followingInfo)}}
+        {"$set": {"following": list(followingInfo)}}
     )
     print(db.users)
 
-    db.users.update(
+    db.users.update_one(
         {"_id": follower_receive},
-        {"$set": {"following_users": list(followerInfo)}}
+        {"$set": {"follower": list(followerInfo)}}
     )
 
     return jsonify({'result': 'success', 'msg': '게시물이 업로드 되었습니다.'})
