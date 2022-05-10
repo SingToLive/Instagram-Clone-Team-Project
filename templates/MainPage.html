@@ -174,11 +174,12 @@
                     <div class="post__content">
                         <!-- 게시물 사진 -->
                         <div class="post__medias">
-                            <div id="{{feed._id}}" class="carousel slide" data-ride="carousel">
+                            <div id="{{feed._id}}" class="carousel slide" data-ride="carousel"
+                                 data-interval="false">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     {% for repeat in feed.feed_picture %}
-                                    <li data-target="#{{feed._id}}"  class="active" ></li>
+                                    <li data-target="#{{feed._id}}" class="active"></li>
                                     {% endfor %}
                                 </ol>
 
@@ -395,15 +396,16 @@
 
 <!-- 게시물 업로드 모달창 -->
 <div id="post_up_modal">
-    <h4 style="font-size: 20px; font-weight: bold;text-align: center;border-bottom: 1px solid gray;padding-bottom: 5px">새 게시물<br></h4>
-   <h5 style="margin: 5px 0 5px 5px; font-weight: bold; font-size: 15px;"> 이미지 url : </h5>
-    <input type="text" id="feed_picture_1"class="post-url"><br>
-    <input type="text" id="feed_picture_2"class="post-url"><br>
-    <input type="text" id="feed_picture_3"class="post-url"><br>
-    <input type="text" id="feed_picture_4"class="post-url"><br>
-    <input type="text" id="feed_picture_5"class="post-url"><br>
+    <h4 style="font-size: 20px; font-weight: bold;text-align: center;border-bottom: 1px solid gray;padding-bottom: 5px">
+        새 게시물<br></h4>
+    <h5 style="margin: 5px 0 5px 5px; font-weight: bold; font-size: 15px;"> 이미지 url : </h5>
+    <input type="text" id="feed_picture_1" class="post-url"><br>
+    <input type="text" id="feed_picture_2" class="post-url"><br>
+    <input type="text" id="feed_picture_3" class="post-url"><br>
+    <input type="text" id="feed_picture_4" class="post-url"><br>
+    <input type="text" id="feed_picture_5" class="post-url"><br>
     <h5 style="margin: 5px 0 5px 5px; font-weight: bold; font-size: 15px;">내용 :</h5>
-        <input type="text" id="feed_contents" class="post-text">
+    <input type="text" id="feed_contents" class="post-text">
     <button type="button" class="btn btn-primary btn-xs modal_close_btn"
             style="background-color: black; float: right;margin:8px 10px 0 0">Cancle
     </button>
