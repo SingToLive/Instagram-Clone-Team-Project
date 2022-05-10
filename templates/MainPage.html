@@ -11,7 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="../static/js/MainPage.js"></script>
 </head>
 
 <body>
@@ -336,17 +335,19 @@
                     <button>모두 보기</button>
                 </div>
                 <div class="side-menu__suggestions-content">
+                    {% for recommend in recommends %}
                     <div class="side-menu__suggestion">
                         <!-- 추천 계정 프로필 사진 -->
                         <a href="#" class="side-menu__suggestion-avatar">
-                            <img src="../static/img/default_user.png" alt="User Picture"/>
+                            <img src="{{recommend.user_picture}}" alt="User Picture"/>
                         </a>
                         <div class="side-menu__suggestion-info">
-                            <a href="#">user01</a>
+                            <a href="#">{{recommend.user_id}}</a>
                             <span>ㅇㅇ님 외 ㅇ명이 팔로우합니다ㅇㅇㅇㅇㅇㅇㅇㅇ</span>
                         </div>
                         <button class="side-menu__suggestion-button">팔로우</button>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
@@ -504,7 +505,7 @@
                             class="post__user"
                     >{{users.user_id}}</a
                     >
-                    <span>{{comments.comment_contents}}</span>
+                    <span></span>
                 </div>
                 <span class="post__date-time">2시간 전</span>
             </div>

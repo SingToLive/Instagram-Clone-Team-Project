@@ -28,6 +28,9 @@ def home():
         user_id = db.users.find_one({"user_email": payload['id']})['_id']
         user_followInfo = db.follow.find_one({"_id": user_id})
         feeds = []
+        a = user_followInfo['following']
+        a.append(user_id)
+        user_recommend = list(db.users.find({"_id": {'$nin': a}}))
         for follower in user_followInfo["follower"]:
             follower_feed = db.feeds.find({"user_id": follower})
             follower_id = db.users.find_one({"_id": follower}, {"_id":0, "user_email":0, "user_pw":0})
@@ -50,7 +53,7 @@ def home():
                 feed.update(follower_id)
                 feed.update(time_pass)
                 feeds.append(feed)
-        return render_template('MainPage.html', users=user_info, feeds=feeds)
+        return render_template('MainPage.html', users=user_info, feeds=feeds, recommends=user_recommend)
 
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
