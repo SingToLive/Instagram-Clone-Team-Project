@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 from datetime import timedelta
 from datetime import datetime
 import certifi
+from bson.objectid import ObjectId
 
 client = MongoClient('mongodb+srv://test:sparta@cluster0.qttfj.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=certifi.where())
 db = client.InstarClone
@@ -154,6 +155,23 @@ def CommentUpReceive():
     }
     db.comments.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '댓글이 등록되었습니다.'})
+
+# 모달 API
+@app.route('/api/modal', methods=['POST'])
+def ModalUpReceive():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    feedID_receive = request.form['feedID_give']
+
+
+
+    feed_info = list(db.feeds.find({"_id": ObjectId(feedID_receive)}))
+    user_info = db.users.find_one({"_id": feed_info[0]['user_id']})
+    comment_info = db.comments.find_one({"feed_id": feed_info[0]['_id']})
+    print(feed_info[0])
+
+    return render_template('MainPage.html', users=user_info, feeds=feed_info, comments=comment_info)
+
 
 
 # @app.route("/login", methods=["GET", "POST"])
