@@ -140,7 +140,6 @@
             <div class="posts">
 
                 {% for feed in feeds %}
-                {{feed}}
                 <!-- 개별 피드 -->
                 <article class="post">
                     <div class="post__header">
@@ -400,9 +399,11 @@
                                     <span>{{feed.feed_contents}}</span>
                                 </div>
                                 <!-- 수정 승태님!!!!!!!!! -->
-                                <span class="post__date-time">2시간 전</span>
+                                <span class="post__date-time">{{feed.time}}{{feed.unit}}</span>
                             </div>
                             <!-- 댓글달리는곳 -->
+                            {% for comment in feed.comments|sort(reverse=True)%}
+                            {% set com_num = comment %}
                             <div class="post__main" style="width: 100%;">
                                 <div class="post__profile">
                                     <!-- 게시물 작성자 프사 -->
@@ -410,19 +411,20 @@
                                             href="MyPage.html"
                                             class="post__avatar"
                                     >
-                                        <img src="../static/img/sijosijo.png" alt="User Picture"/>
+                                        <img src="{{feed.comments[com_num].commenter_img}}" alt="User Picture"/>
                                     </a>
                                     <!-- 게시물 작성자 아이디 -->
                                     <a
                                             href="MyPage.html"
                                             class="post__user"
-                                    >{{users.user_id}}</a
+                                    >{{feed.comments[com_num].user_name}}</a
                                     >
-                                    <span>hello hi</span>
+                                    <span>{{feed.comments[com_num].comment_contents}}</span>
                                 </div>
                                 <!-- 수정 승태님!!!!!!!!! -->
-                                <span class="post__date-time">1시간 전</span>
+                                <span class="post__date-time">{{feed.comments[com_num].time}}{{feed.comments[com_num].unit}}</span>
                             </div>
+                            {% endfor %}
                         </div>
                         <div style="width: 100%; float: right; border-top: 1px solid var(--border);">
                             <div class="post__footer">
