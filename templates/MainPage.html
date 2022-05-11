@@ -18,7 +18,7 @@
     <nav class="header__content">
         <div class="header__buttons">
             <!-- 좌측 상단 instagram img -->
-            <a href="page?name=MainPage" class="header__home">
+            <a href="/" class="header__home">
                 <img src="../static/img/logo.svg">
             </a>
         </div>
@@ -65,7 +65,7 @@
 
         <div class="header__buttons header__buttons--desktop">
             <!-- 우측 상단 홈 이미지 -->
-            <a href="page?name=MainPage">
+            <a href="/">
                 <svg aria-label="홈" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
                      viewBox="0 0 24 24" width="24">
                     <path d="M22 23h-6.001a1 1 0 01-1-1v-5.455a2.997 2.997 0 10-5.993 0V22a1 1 0 01-1 1H2a1 1 0 01-1-1V11.543a1.002 1.002 0 01.31-.724l10-9.543a1.001 1.001 0 011.38 0l10 9.543a1.002 1.002 0 01.31.724V22a1 1 0 01-1 1z"></path>
@@ -357,14 +357,14 @@
                                 <div class="post__profile">
                                     <!-- 게시물 작성자 프사 -->
                                     <a
-                                            href="page?MyPage"
+                                            href="page?name=MyPage"
                                             class="post__avatar"
                                     >
                                         <img src="{{feed.user_picture}}" alt="User Picture"/>
                                     </a>
                                     <!-- 게시물 작성자 아이디 -->
                                     <a
-                                            href="page?MyPage"
+                                            href="page?name=MyPage"
                                             class="post__user"
                                     >{{feed.user_id}}</a
                                     >
@@ -382,17 +382,17 @@
                         </div>
                         <div style="width: 100%; height: 75%; float: left; ">
                             <div class="post__main" style="width: 100%;">
-                                <div class="post__profile">
+                                <div class="post__profile" href="page?name=MyPage">
                                     <!-- 게시물 작성자 프사 -->
                                     <a
-                                            href="page?MyPage"
+
                                             class="post__avatar"
                                     >
                                         <img src="{{feed.user_picture}}" alt="User Picture"/>
                                     </a>
                                     <!-- 게시물 작성자 아이디 -->
                                     <a
-                                            href="page?MyPage"
+
                                             class="post__user"
                                     >{{feed.user_id}}</a
                                     >
@@ -405,17 +405,17 @@
                             {% for comment in feed.comments|sort(reverse=True)%}
                             {% set com_num = comment %}
                             <div class="post__main" style="width: 100%;">
-                                <div class="post__profile">
+                                <div class="post__profile" href="page?name=MyPage">
                                     <!-- 게시물 작성자 프사 -->
                                     <a
-                                            href="MyPage.html"
+
                                             class="post__avatar"
                                     >
                                         <img src="{{feed.comments[com_num].commenter_img}}" alt="User Picture"/>
                                     </a>
                                     <!-- 게시물 작성자 아이디 -->
                                     <a
-                                            href="MyPage.html"
+
                                             class="post__user"
                                     >{{feed.comments[com_num].user_name}}</a
                                     >
@@ -477,12 +477,12 @@
                                 <div class="post__infos">
                                     <div class="post__likes">
                                         <!-- 좋아요 누른 사람 프사 -->
-                                        <a href="#" class="post__likes-avatar">
+                                        <a href="page?name=MyPage" class="post__likes-avatar">
                                             <img src="../static/img/default_user.png" alt="User Picture"/>
                                         </a>
                                         <!-- ㅇㅇ님 외 00명이 좋아합니다 -->
                                         <span>
-                                    <a class="post__name--underline" href="#">유저 아이디</a>님
+                                    <a class="post__name--underline" href="page?=MyPage">유저 아이디</a>님
                                     <a>외 00명</a>이 좋아합니다
                                 </span>
                                     </div>
@@ -536,11 +536,11 @@
                     {% for recommend in recommends %}
                     <div class="side-menu__suggestion">
                         <!-- 추천 계정 프로필 사진 -->
-                        <a href="#" class="side-menu__suggestion-avatar">
+                        <a href="page?name=MyPage" class="side-menu__suggestion-avatar">
                             <img src="{{recommend.user_picture}}" alt="User Picture"/>
                         </a>
                         <div class="side-menu__suggestion-info">
-                            <a href="#">{{recommend.user_id}}</a>
+                            <a href="page?name=MyPage">{{recommend.user_id}}</a>
                             <span>ㅇㅇ님 외 ㅇ명이 팔로우합니다ㅇㅇㅇㅇㅇㅇㅇㅇ</span>
                         </div>
                         <button class="side-menu__suggestion-button" onclick="follow('{{recommend._id}}')">팔로우</button>
