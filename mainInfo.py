@@ -31,7 +31,11 @@ def mainInfo(Info):
         feeds = []
         for following in user_followingInfo["following"]:
             following_feed = db.feeds.find({"user_id": following})
-            following_id = db.users.find_one({"_id": following}, {"_id":0, "user_email":0, "user_pw":0})
+            following_id = db.users.find_one({"_id": following}, {"user_email":0, "user_pw":0})
+            print(following_id)
+            print(type(following_id))
+            key_toChange = following_id.pop("_id")
+            following_id["follower_id"] = key_toChange
             for feed in following_feed:
                 # 시간
                 time_pass = past_time_cal(feed['feed_time'])
