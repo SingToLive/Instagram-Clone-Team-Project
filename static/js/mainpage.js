@@ -108,6 +108,18 @@ function post_modal(id) {
     });
     document.body.append(bg);
 
+
+    $.ajax({
+        type: "POST",
+        url: "/api/modal",
+        data: {feedID_give: id},
+        success: function (response) {
+            if (response['result'] == 'success') {
+                alert('1111.')
+            }
+        }
+    })
+
     // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
     close_modal_event = document.getElementsByClassName('modal_close_btn');
     for (var i = 0; i < close_modal_event.length; i++) {

@@ -8,6 +8,7 @@ from datetime import timedelta
 from datetime import datetime
 import certifi
 from bson.objectid import ObjectId
+from mainInfo import mainInfo
 
 client = MongoClient('mongodb+srv://test:sparta@cluster0.qttfj.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=certifi.where())
 db = client.InstarClone
@@ -23,38 +24,11 @@ SECRET_KEY = 'SAJOSAJO'
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.users.find_one({"user_email": payload['id']})
-        user_id = db.users.find_one({"user_email": payload['id']})['_id']
-        user_followingInfo = db.users.find_one({"_id": user_id})
-        feeds = []
+        Info = mainInfo("user_info")
+        feeds = mainInfo("feeds")
+        user_recommend = mainInfo("user_recommend")
 
-
-
-        user_recommend = list(db.users.find({"_id": {'$nin': user_followingInfo['following']}}))
-        for following in user_followingInfo["following"]:
-            following_feed = db.feeds.find({"user_id": following})
-            following_id = db.users.find_one({"_id": following}, {"_id":0, "user_email":0, "user_pw":0})
-            for feed in following_feed:
-                time_pass = {}
-                a = datetime.now() - feed['feed_time']
-                if a.days > 0:
-                    time_pass['time'] = a.days
-                    time_pass['unit'] = "일 전"
-                else:
-                    if a.seconds//3600 > 0:
-                        time_pass['time'] = a.seconds//3600
-                        time_pass['unit'] = "시간 전"
-                    elif a.seconds//60 > 0:
-                        time_pass['time'] = a.seconds//60
-                        time_pass['unit'] = "분 전"
-                    else:
-                        time_pass['time'] = a.seconds
-                        time_pass['unit'] = "초 전"
-                feed.update(following_id)
-                feed.update(time_pass)
-                feeds.append(feed)
-        return render_template('MainPage.html', users=user_info, feeds=feeds, recommends=user_recommend)
+        return render_template('MainPage.html', users=Info, feeds=feeds, recommends=user_recommend)
 
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
@@ -166,18 +140,18 @@ def CommentUpReceive():
     db.comments.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '댓글이 등록되었습니다.'})
 
-# MyPage API
-@app.route('/api/mypage', methods=['POST'])
-def MyPageReceive():
 
+# 모달 API
+@app.route('/api/modal', methods=['POST'])
+def ModalUpReceive():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    Info = mainInfo("user_info")
+    feeds = mainInfo("feeds")
+    user_recommend = mainInfo("user_recommend")
 
-    userID_receive = ObjectId(request.form['userID_give'])
-    print(userID_receive)
-    user_info = db.users.find_one({"_id": userID_receive})
+    return render_template('MainPage.html', users=Info, feeds=feeds, recommends=user_recommend)
 
-    print(user_info)
-
-    return render_template('MyPage.html', user=user_info)
 
 # 팔로우 API
 @app.route('/api/follow', methods=['POST'])
@@ -191,17 +165,14 @@ def FollowReceive():
     user_following = db.users.find_one({"_id": user_id})
     followingInfo=user_following['following']
     followingInfo.append(follower_receive)
-    print(followingInfo)
     user_follower = db.users.find_one({"_id": follower_receive})
     followerInfo = user_follower['follower']
     followerInfo.append(user_id)
-    print(followerInfo)
-    print(db.users)
+
     db.users.update_one(
         {"_id": user_id},
         {"$set": {"following": list(followingInfo)}}
     )
-    print(db.users)
 
     db.users.update_one(
         {"_id": follower_receive},
