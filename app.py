@@ -46,24 +46,38 @@ def login():
 # def main():
 #     return render_template('MainPage.html')
 #
-# #마이페이지
-# @app.route('/MyPage')
-# def MyPage():
-#     return render_template('MyPage.html')
+#마이페이지
+@app.route('/MyPage')
+def MyPage():
+    user_token = request.cookies.get('mytoken')
+    payload = jwt.decode(user_token, SECRET_KEY, algorithms=['HS256'])
+    try:
+        #들어갈려는 페이지
+        Indivdual_Id = ObjectId(request.cookies.get('Indivtoken'))
+        Indivdual_Info = db.users.find_one({"_id":Indivdual_Id})
+        Indivdual_Feeds = db.feeds.find({"user_id":Indivdual_Id})
+        Img = []
+        for Feed in Indivdual_Feeds:
+            Img.append(Feed["feed_picture"])
+        Indivdual_Info.update({'feeds':Img})
+        Info = mainInfo("user_info")
+        if Info["_id"] == Indivdual_Info["_id"]:
+            print('It is same. Go to MyPage')
+            return render_template('MyPage.html', user_Info=Info, Indivdual_Info=Indivdual_Info, Same=True)
+        else:
+            print('It is differnet')
+            return render_template('MyPage.html', user_Info=Info, Indivdual_Info=Indivdual_Info, Same=False)
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 #페이지이동#메인만 작동
-@app.route('/page')
+@app.route('/page', methods=["POST"])
 def page():
-    name = request.args.get('name')
-    if name == "MainPage":
-        token_receive = request.cookies.get('mytoken')
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        Info = mainInfo("user_info")
-        feeds = mainInfo("feeds")
-        user_recommend = mainInfo("user_recommend")
-
-        return render_template('MainPage.html', users=Info, feeds=feeds, recommends=user_recommend)
-    return render_template(name+'.html')
+    id = request.form["IndiviualID_give"]
+    return jsonify({'token': id})
 
 # #마이페이지 템플릿 이동
 # @app.route('/mypage', methods=['POST'])

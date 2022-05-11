@@ -115,7 +115,7 @@
                 </svg>
             </button>
             <!-- 우측 상단 프로필 이미지 버튼 -->
-            <a onclick="GoToMyPage('{{users._id}}')" href="page?name=MyPage">
+            <a onclick="GoToIndividualPage('{{users._id}}')">
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
                     <div class="profile-button__picture">
@@ -145,16 +145,14 @@
                     <div class="post__header">
                         <div class="post__profile">
                             <!-- 게시물 작성자 프사 -->
-                            <a
-                                    href="page?name=MyPage"
-
+                            <a      onclick="GoToIndividualPage('{{feed.user_id}}')"
                                     class="post__avatar"
                             >
                                 <img src="{{feed.user_picture}}" alt="User Picture"/>
                             </a>
                             <!-- 게시물 작성자 아이디 -->
                             <a
-                                    href="page?name=MyPage"
+                                    onclick="GoToIndividualPage('{{feed.user_id}}')"
                                     class="post__user"
                             >{{feed.user_id}}</a
                             >
@@ -482,7 +480,7 @@
                                         </a>
                                         <!-- ㅇㅇ님 외 00명이 좋아합니다 -->
                                         <span>
-                                    <a class="post__name--underline" href="page?=MyPage">유저 아이디</a>님
+                                    <a class="post__name--underline" href="page?name=MyPage">유저 아이디</a>님
                                     <a>외 00명</a>이 좋아합니다
                                 </span>
                                     </div>
@@ -557,7 +555,7 @@
     <div class="feed_message">
         <div class="user__profile">
             <a
-                    href="page?MyPage"
+                    href="page?name=MyPage"
                     class="post__avatar"
             >
                 <img src="../static/img/sijosijo.png" alt="User Picture"/>
@@ -568,7 +566,7 @@
     <div class="feed_message">
         <div class="user__profile">
             <a
-                    href="page?MyPage"
+                    href="page?name=MyPage"
                     class="post__avatar"
             >
                 <img src="../static/img/sijosijo.png" alt="User Picture"/>
