@@ -289,7 +289,7 @@
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
                     <div class="profile-button__picture">
-                        <img src="../static/img/sijosijo.png" alt="User Picture"/>
+                        <img src="{{user_Info.user_picture}}" alt="User Picture"/>
                     </div>
                 </button>
             </a>
@@ -305,24 +305,26 @@
 <!--프로필-->
 <div class="main-container">
     <div class="main-container__profile">
-        <img src="../static/img/sijosijo.png"/>
+        <img src="{{Indivdual_Info.user_picture}}"/>
         <div class="main-container__profile__info">
             <div class="main-container__profile__info__id-buttton">
-                <span>woojin</span>
+                <span>{{Indivdual_Info.user_id}}</span>
+                {% if Same==True %}
                 <button name="button">프로필 편집</button>
                 <i class="fa-solid fa-gear"></i>
+                {% endif %}
             </div>
             <div class="main-container__profile__info__follow-etc">
                 <span>게시물</span>
-                <span>999</span>
+                <span>{{Indivdual_Info.feeds|length}}</span>
                 <span>팔로워</span>
-                <span>100K</span>
+                <span>{{Indivdual_Info.follower|length}}</span>
                 <span>팔로우</span>
-                <span>30K</span>
+                <span>{{Indivdual_Info.following|length}}</span>
             </div>
             <div class="main-container__profile__info__name-discription">
-                <span>Woojin Baek</span>
-                <span>Sweet Lover</span>
+                <span>{{Indivdual_Info.user_name}}</span>
+                <span>{{Indivdual_Info.user_id}}</span>
             </div>
         </div>
     </div>
@@ -346,7 +348,9 @@
             </div>
         </div>
         <div class="main-container__publications__imgs">
-            <img src="../static/img/woodindin.png"/>
+            {% for feeds in Indivdual_Info.feeds %}
+            <img src="{{feeds[0]}}"/>
+            {% endfor %}
             <div id="this_is_blank_for_last_row"></div>
         </div>
     </div>
