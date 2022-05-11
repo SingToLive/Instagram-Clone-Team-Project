@@ -166,21 +166,18 @@ def CommentUpReceive():
     db.comments.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '댓글이 등록되었습니다.'})
 
-# 모달 API
-@app.route('/api/modal', methods=['POST'])
-def ModalUpReceive():
-    token_receive = request.cookies.get('mytoken')
-    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-    feedID_receive = request.form['feedID_give']
+# MyPage API
+@app.route('/api/mypage', methods=['POST'])
+def MyPageReceive():
 
 
+    userID_receive = ObjectId(request.form['userID_give'])
+    print(userID_receive)
+    user_info = db.users.find_one({"_id": userID_receive})
 
-    feed_info = list(db.feeds.find({"_id": ObjectId(feedID_receive)}))
-    user_info = db.users.find_one({"_id": feed_info[0]['user_id']})
-    comment_info = db.comments.find_one({"feed_id": feed_info[0]['_id']})
-    print(feed_info[0])
+    print(user_info)
 
-    return render_template('MainPage.html', users_2=user_info, feed_2=feed_info, comments_2=comment_info)
+    return render_template('MyPage.html', user=user_info)
 
 # 팔로우 API
 @app.route('/api/follow', methods=['POST'])
@@ -211,7 +208,7 @@ def FollowReceive():
         {"$set": {"follower": list(followerInfo)}}
     )
 
-    return jsonify({'result': 'success', 'msg': '게시물이 업로드 되었습니다.'})
+    return jsonify({'result': 'success'})
 
 
 # @app.route("/login", methods=["GET", "POST"])
