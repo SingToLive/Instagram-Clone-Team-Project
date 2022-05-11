@@ -41,21 +41,36 @@ def login():
     msg = request.args.get("msg")
     return render_template('LoginPage.html', msg=msg)
 
-#메인페이지
-@app.route('/MainPage')
-def main():
-    return render_template('MainPage.html')
+# #메인페이지
+# @app.route('/MainPage')
+# def main():
+#     return render_template('MainPage.html')
+#
+# #마이페이지
+# @app.route('/MyPage')
+# def MyPage():
+#     return render_template('MyPage.html')
 
-#마이페이지
-@app.route('/MyPage')
-def MyPage():
-    return render_template('MyPage.html')
-
-#페이지이동
+#페이지이동#메인만 작동
 @app.route('/page')
 def page():
     name = request.args.get('name')
+    if name == "MainPage":
+        token_receive = request.cookies.get('mytoken')
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        Info = mainInfo("user_info")
+        feeds = mainInfo("feeds")
+        user_recommend = mainInfo("user_recommend")
+
+        return render_template('MainPage.html', users=Info, feeds=feeds, recommends=user_recommend)
     return render_template(name+'.html')
+
+# #마이페이지 템플릿 이동
+# @app.route('/mypage', methods=['POST'])
+# def IndividualPage():
+#     name = req
+
+
 
 #회원가입페이지
 @app.route('/SignUpPage')
