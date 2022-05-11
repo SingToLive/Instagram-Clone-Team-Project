@@ -140,6 +140,7 @@ def CommentUpReceive():
     db.comments.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '댓글이 등록되었습니다.'})
 
+
 # 모달 API
 @app.route('/api/modal', methods=['POST'])
 def ModalUpReceive():
@@ -178,7 +179,7 @@ def FollowReceive():
         {"$set": {"follower": list(followerInfo)}}
     )
 
-    return jsonify({'result': 'success', 'msg': '게시물이 업로드 되었습니다.'})
+    return jsonify({'result': 'success'})
 
 
 # @app.route("/login", methods=["GET", "POST"])

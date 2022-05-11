@@ -1,3 +1,15 @@
+//MyPage 이동 함수
+function  GoToMyPage(id){
+    let user_id = id;
+
+    $.ajax({
+        type: "POST",
+        url: "/api/mypage",
+        data: {userID_give: user_id},
+    })
+}
+
+
 //팔로우 post 함수
 function follow(follower_id){
     let follower = follower_id
@@ -52,7 +64,6 @@ function feedup() {
 
 function commentup(id, time) {
     let contents = document.getElementById(time).value
-    console.log(contents)
 
     let feed_id = id
 
