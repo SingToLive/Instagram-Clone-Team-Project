@@ -10,7 +10,7 @@ import certifi
 from bson.objectid import ObjectId
 from mainInfo import mainInfo
 
-client = MongoClient('mongodb+srv://test:sparta@cluster0.qttfj.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=certifi.where())
+client = MongoClient('', tlsCAFile=certifi.where())
 db = client.InstarClone
 
 app = Flask(__name__)
