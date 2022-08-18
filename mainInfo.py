@@ -16,8 +16,6 @@ app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 app.secret_key = "SPARTA"
-SECRET_KEY = 'SAJOSAJO'
-
 
 def mainInfo(Info):
     token_receive = request.cookies.get('mytoken')
@@ -32,14 +30,10 @@ def mainInfo(Info):
         for following in user_followingInfo["following"]:
             following_feed = db.feeds.find({"user_id": following})
             following_id = db.users.find_one({"_id": following}, {"user_email":0, "user_pw":0})
-            print(following_id)
-            print(type(following_id))
             key_toChange = following_id.pop("_id")
             following_id["follower_id"] = key_toChange
             for feed in following_feed:
-                # 시간
                 time_pass = past_time_cal(feed['feed_time'])
-                #댓글리스트
                 feed_info = feed["_id"]
                 comments_info = db.comments.find({"feed_id": str(feed_info)})
                 comment_info = {}
@@ -54,9 +48,7 @@ def mainInfo(Info):
                 comment_dic = {}
                 comment_dic["comments"] = comment_info
                 feed.update(comment_dic)
-                #팔로잉
                 feed.update(following_id)
-                #게시글 시간
                 feed.update(time_pass)
                 feeds.append(feed)
         return feeds
@@ -68,7 +60,6 @@ def mainInfo(Info):
 
 def past_time_cal(time):
     time_pass = {}
-    # a = datetime.now() - feed['feed_time']
     a = datetime.now() - time
     if a.days > 0:
         time_pass['time'] = a.days

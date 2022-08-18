@@ -13,16 +13,13 @@
     <link rel="stylesheet" href="../static/css/signuppage.css"/>
     <title>Instagram</title>
     <script>
-
         $(document).ready(function () {
         });
-
         function signup() {
             let email = $('#user_email').val()
             let name = $('#user_name').val()
             let id = $('#user_id').val()
             let pw = $('#user_pw').val()
-
             $.ajax({
                 type: "POST",
                 url: "/api/signup",
@@ -38,17 +35,13 @@
             })
         }
 
-
-        // 이메일 구별
         function chk_email() {
             let emailID = document.myForm.user_email.value;
             atpos = emailID.indexOf("@");
             dotpos = emailID.lastIndexOf(".");
-
             if (emailID == '') {
                 alert('입력해주세요!')
                 return false;
-
             } else if (atpos < 1 || (dotpos - atpos < 2)) {
                 document.myForm.user_email.focus();
                 alert('올바른 이메일이 아닙니다')
@@ -58,14 +51,12 @@
             return (true);
         }
 
-        // 패스워드 구별
         function chk_PW() {
 
             let pw = $("#user_pw").val();
             let num = pw.search(/[0-9]/g);
             let eng = pw.search(/[a-z]/ig);
             let spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-
             if (pw.length < 4 || pw.length > 10) {
                 alert("4자리 ~ 10자리 이내로 입력해주세요.");
                 return false;
@@ -73,19 +64,15 @@
                 alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
                 return false;
             } else {
-                console.log("통과");
             }
-
         }
 
-        // 아이디 구별
         function chk_id() {
             let id = $("#user_id").val();
             let num = id.search(/[0-9]/g);
             let eng = id.search(/[a-z]/ig);
             let spe = id.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
             let kor = id.search(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi);
-
             if ((id.length < 6) || (id.length > 20)) {
                 alert("아이디를 6자리 ~ 20자리 이내로 입력해주세요.");
                 return false;
@@ -94,54 +81,39 @@
                 alert("아이디는 영문,숫자만 입력해주세요.");
                 return false;
             }
-
             return true;
         }
-
     </script>
 </head>
 <body>
 
 <form class="signup-form" name="myForm">
-
-    <!--타이틀-->
     <div class="title">
         <div class="logo">
             <img src="/static/img/logo.svg" alt="로고">
         </div>
         <span class="signup">Sign up</span>
     </div>
-
-    <!--이메일-->
     <div class="email_form">
         <label for="#" class="email">Email address</label>
         <input type="email" class="form-control" id="user_email"
                name="user_email" placeholder="Email" onclick="chk_email()">
     </div>
-
-    <!--성명-->
     <div class="fullname_form">
         <label for="#" class="username">Full name</label>
         <input type="text" class="form-control" id="user_name" placeholder="Name">
     </div>
-
-    <!--    사용자이름-->
     <div class="username_form">
         <label for="#" class="username">User name</label>
         <input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID" onclick="chk_id()">
 
     </div>
-
-    <!--    패스워드-->
     <div class="password_form">
         <label for="#" class="password">Password</label>
         <input type="password" name="password" class="form-control" id="user_pw" onclick="chk_PW()">
         <div class="show">
             <i class="bi bi-eye-slash" id="togglePassword"></i>
         </div>
-
-
-        <!--가입버튼-->
         <div class="login_button">
             <div class="container">
                 <a onclick="signup()" type="submit" class="button btnPush signin-btn"> Sign up </a>
@@ -149,18 +121,13 @@
             </div>
         </div>
     </div>
-
-    <!--password 보이기 숨기기-->
     <script>
         const togglePassword = document.querySelector("#togglePassword");
         const password = document.querySelector("#user_pw");
 
         togglePassword.addEventListener("click", function () {
-            // toggle the type attribute
             const type = password.getAttribute("type") === "password" ? "text" : "password";
             password.setAttribute("type", type);
-
-            // toggle the icon
             this.classList.toggle("bi-eye");
         });
     </script>

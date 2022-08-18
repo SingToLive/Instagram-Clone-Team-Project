@@ -37,24 +37,17 @@
 </head>
 <body>
 <header class="header">
-    <!-- navigation -->
     <nav class="header__content">
         <div class="header__buttons">
-            <!-- 좌측 상단 instagram img -->
             <a href="/" class="header__home">
                 <img src="../static/img/logo.svg"/>
             </a>
         </div>
-
         <div class="header__search">
-            <!-- 돋보기 이미지 -->
             <img src="../static/img/icons/search.svg"/>
-            <!-- 검색 txt 박스 -->
             <input type="text" placeholder="Search"/>
         </div>
-
         <div class="header__buttons header__buttons--mobile">
-            <!-- 모바일 화면 우측 상단 게시물 작성 이미지 -->
             <a href="#">
                 <svg
                         aria-label="새로운 게시물"
@@ -98,7 +91,6 @@
                     ></line>
                 </svg>
             </a>
-            <!-- 모바일 화면 우측 상단 활동 피드 이미지 -->
             <a href="#">
                 <svg
                         aria-label="활동 피드"
@@ -115,7 +107,6 @@
                     ></path>
                 </svg>
             </a>
-            <!-- 모바일 화면 우측 상단 메세지 이미지 -->
             <a href="#">
                 <svg
                         aria-label="Direct"
@@ -147,9 +138,7 @@
                 </svg>
             </a>
         </div>
-
         <div class="header__buttons header__buttons--desktop">
-            <!-- 우측 상단 홈 이미지 -->
             <a href="/">
                 <svg
                         aria-label="홈"
@@ -166,7 +155,6 @@
                     ></path>
                 </svg>
             </a>
-            <!-- 우측 상단 메세지 이미지 -->
             <a href="#">
                 <svg
                         aria-label="Direct"
@@ -197,7 +185,6 @@
                     ></polygon>
                 </svg>
             </a>
-            <!-- 우측 상단 게시물 작성 이미지 -->
             <a href="#">
                 <svg
                         aria-label="새로운 게시물"
@@ -241,7 +228,6 @@
                     ></line>
                 </svg>
             </a>
-            <!-- 우측 상단 사람 찾기 이미지 -->
             <a href="#">
                 <svg
                         aria-label="사람 찾기"
@@ -277,14 +263,12 @@
                     ></circle>
                 </svg>
             </a>
-            <!-- 우측 상단 활동 피드 이미지 -->
             <button class="feed-option">
                 <svg aria-label="활동 피드" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img"
                      viewBox="0 0 24 24" width="24">
                     <path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path>
                 </svg>
             </button>
-            <!-- 우측 상단 프로필 이미지 버튼 -->
             <a href="page?name=MyPage">
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
@@ -302,7 +286,6 @@
     </nav>
 </header>
 
-<!--프로필-->
 <div class="main-container">
     <div class="main-container__profile">
         <img src="{{Indivdual_Info.user_picture}}"/>
@@ -354,7 +337,6 @@
             <div id="this_is_blank_for_last_row"></div>
         </div>
     </div>
-    <!-- footer -->
     <div class="main-container__footer">
         <div class="main-container__footer__etc">
             <span>Meta</span>
@@ -376,7 +358,6 @@
         </div>
     </div>
 </div>
-<!-- 피드 모달창 -->
 <div id="feed_modal">
     <div class="feed_message">
         <div class="user__profile">
@@ -407,8 +388,6 @@
     function feed__modal(id) {
         var zIndex = 9999;
         var modal = document.getElementById(id);
-
-        // 모달 div 뒤에 희끄무레한 레이어
         var bg = document.createElement('div');
         bg.setStyle({
             position: 'fixed',
@@ -418,12 +397,9 @@
             width: '100%',
             height: '100%',
             overflow: 'auto',
-            // 레이어 색갈은 여기서 바꾸면 됨
             backgroundColor: 'rgba(0,0,0,0.4)'
         });
         document.body.append(bg);
-
-        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
         document.getElementById('feed_close_btn').addEventListener('click', function () {
             bg.remove();
             modal.style.display = 'none';
@@ -433,20 +409,14 @@
             position: 'fixed',
             display: 'block',
             boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-
-            // 시꺼먼 레이어 보다 한칸 위에 보이기
             zIndex: zIndex + 1,
-
-            // div center 정렬
             top: '30%',
             left: '80%',
             transform: 'translate(-50%, -50%)',
             msTransform: 'translate(-50%, -50%)',
             webkitTransform: 'translate(-50%, -50%)'
         });
-
     }
-
     modal_event = document.getElementsByClassName('feed-option')
     for (var i = 0; i < modal_event.length; i++) {
         modal_event[i].addEventListener('click', function () {
@@ -461,11 +431,7 @@
         } else {
             zIndex = 9000;
         }
-
         var modal = document.getElementById(id);
-        console.log(modal)
-
-        // 모달 div 뒤에 희끄무레한 레이어
         var bg = document.createElement('div');
         bg.setStyle({
             position: 'fixed',
@@ -475,12 +441,9 @@
             width: '100%',
             height: '100%',
             overflow: 'auto',
-            // 레이어 색갈은 여기서 바꾸면 됨
             backgroundColor: 'rgba(0,0,0,0.4)'
         });
         document.body.append(bg);
-
-        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
         close_modal_event = document.getElementsByClassName('modal_close_btn');
         for (var i = 0; i < close_modal_event.length; i++) {
             close_modal_event[i].addEventListener('click', function () {
@@ -488,27 +451,18 @@
                 modal.style.display = 'none';
             });
         }
-
         modal.setStyle({
             position: 'fixed',
             display: 'block',
             boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-
-            // 시꺼먼 레이어 보다 한칸 위에 보이기
             zIndex: zIndex + 1,
-
-            // div center 정렬
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
             msTransform: 'translate(-50%, -50%)',
             webkitTransform: 'translate(-50%, -50%)'
         });
-
-
     }
-
-    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
     Element.prototype.setStyle = function (styles) {
         for (var k in styles) this.style[k] = styles[k];
         return this;
@@ -518,19 +472,14 @@
     for (var i = 0; i < option_modal_event.length; i++) {
         option_modal_event[i].addEventListener('click', function () {
             modal('option_modal');
-
         });
     }
-
     post_modal_event = document.getElementsByClassName('post__button')
     for (var i = 0; i < post_modal_event.length; i++) {
         post_modal_event[i].addEventListener('click', function () {
             modal('post_modal');
         });
     }
-    // 모달창 띄우기
-
-
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 <script src="../static/js/logout.js"></script>
