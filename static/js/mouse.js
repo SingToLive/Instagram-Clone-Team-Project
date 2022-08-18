@@ -1,7 +1,7 @@
  // 마우스 효과
-    var colours = new Array("#56ccf2", "#2F80ED", "#f2fcfe", "#f2fcfe", "#ffffff"); // colours for top, right, bottom and left borders and background of bubbles
-    var bubbles = 50; // maximum number of bubbles on screen
-    var over_or_under = "over"; // set to "over" for bubbles to always be on top, or "under" to allow them to float behind other objects
+    var colours = new Array("#56ccf2", "#2F80ED", "#f2fcfe", "#f2fcfe", "#ffffff");
+    var bubbles = 50;
+    var over_or_under = "over";
 
     var x = ox = 400;
     var y = oy = 300;

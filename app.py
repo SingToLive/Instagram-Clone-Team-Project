@@ -17,9 +17,7 @@ app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 app.secret_key = "SPARTA"
-SECRET_KEY = 'SAJOSAJO'
 
-# 로그인메인
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
@@ -27,12 +25,9 @@ def home():
         Info = mainInfo("user_info")
         feeds = mainInfo("feeds")
         user_recommend = mainInfo("user_recommend")
-
         return render_template('MainPage.html', users=Info, feeds=feeds, recommends=user_recommend)
-
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
-
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
@@ -41,18 +36,11 @@ def login():
     msg = request.args.get("msg")
     return render_template('LoginPage.html', msg=msg)
 
-# #메인페이지
-# @app.route('/MainPage')
-# def main():
-#     return render_template('MainPage.html')
-#
-#마이페이지
 @app.route('/MyPage')
 def MyPage():
     user_token = request.cookies.get('mytoken')
     payload = jwt.decode(user_token, SECRET_KEY, algorithms=['HS256'])
     try:
-        #들어갈려는 페이지
         Indivdual_Id = ObjectId(request.cookies.get('Indivtoken'))
         Indivdual_Info = db.users.find_one({"_id":Indivdual_Id})
         Indivdual_Feeds = db.feeds.find({"user_id":Indivdual_Id})
@@ -62,10 +50,8 @@ def MyPage():
         Indivdual_Info.update({'feeds':Img})
         Info = mainInfo("user_info")
         if Info["_id"] == Indivdual_Info["_id"]:
-            print('It is same. Go to MyPage')
             return render_template('MyPage.html', user_Info=Info, Indivdual_Info=Indivdual_Info, Same=True)
         else:
-            print('It is differnet')
             return render_template('MyPage.html', user_Info=Info, Indivdual_Info=Indivdual_Info, Same=False)
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
@@ -73,25 +59,15 @@ def MyPage():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
-#페이지이동#메인만 작동
 @app.route('/page', methods=["POST"])
 def page():
     id = request.form["IndiviualID_give"]
     return jsonify({'token': id})
 
-# #마이페이지 템플릿 이동
-# @app.route('/mypage', methods=['POST'])
-# def IndividualPage():
-#     name = req
-
-
-
-#회원가입페이지
 @app.route('/SignUpPage')
 def SignUp():
     return render_template('SignUpPage.html')
 
-# 회원가입API
 @app.route('/api/signup', methods=['POST'])
 def SignUpReceive():
 
@@ -101,7 +77,6 @@ def SignUpReceive():
     pw_receive = request.form['pw_give']
     following_receive = []
     follower_receive = []
-
 
     pw_receive = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
     
@@ -127,8 +102,6 @@ def SignUpReceive():
         db.users.insert_one(doc)
         return jsonify({'result': 'success', 'msg': '회원가입 되었습니다!'})
 
-
-# 게시물 업로드 API
 @app.route('/api/feedup', methods=['POST'])
 def FeedUpReceive():
     token_receive = request.cookies.get('mytoken')
@@ -147,7 +120,6 @@ def FeedUpReceive():
     db.feeds.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '게시물이 업로드 되었습니다.'})
 
-# 댓글 업로드 API
 @app.route('/api/commentup', methods=['POST'])
 def CommentUpReceive():
     token_receive = request.cookies.get('mytoken')
@@ -169,8 +141,6 @@ def CommentUpReceive():
     db.comments.insert_one(doc)
     return jsonify({'result': 'success', 'msg': '댓글이 등록되었습니다.'})
 
-
-# 모달 API
 @app.route('/api/modal', methods=['POST'])
 def ModalUpReceive():
     token_receive = request.cookies.get('mytoken')
@@ -181,8 +151,6 @@ def ModalUpReceive():
 
     return render_template('MainPage.html', users=Info, feeds=feeds, recommends=user_recommend)
 
-
-# 팔로우 API
 @app.route('/api/follow', methods=['POST'])
 def FollowReceive():
     token_receive = request.cookies.get('mytoken')
@@ -210,8 +178,6 @@ def FollowReceive():
 
     return jsonify({'result': 'success'})
 
-
-# @app.route("/login", methods=["GET", "POST"])
 @app.route("/signin", methods=["POST"])
 def login_page():
     if request.method == "POST":
@@ -225,19 +191,12 @@ def login_page():
             if id["user_pw"] != user_password:
                 return jsonify({'result': "fail", 'msg': '잘못된 비밀번호입니다!'})
             else:
-                # session['user_id'] = request.form['user_id']
                 payload = {
                     'id': user_id,
                     'exp': datetime.utcnow() + timedelta(seconds=60 * 10)  # 로그인 10분 유지
                 }
                 token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
                 return jsonify({'result': "success",'token': token, 'msg': '로그인 되었습니다!'})
-
-
-# @app.route('/logout', methods=["GET"])
-# def logout():
-#     # session.pop('user_id')
-#     return jsonify({'msg': '로그아웃 되었습니다!'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

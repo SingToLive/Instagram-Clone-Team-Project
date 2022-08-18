@@ -1,8 +1,6 @@
 //MyPage 이동 함수
 function  GoToIndividualPage(id){
     let user_id = id;
-    console.log(user_id)
-    console.log(typeof(user_id))
     $.ajax({
         type: "POST",
         url: "/page",

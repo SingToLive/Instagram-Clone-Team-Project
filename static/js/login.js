@@ -16,7 +16,6 @@ function loginbtn() {
                 alert(response['msg'])
                 $.cookie('mytoken', response['token'], {path: '/'});
                 window.location.replace("/")
-                // window.location.href = '/MainPage'
             }
         }
     })
